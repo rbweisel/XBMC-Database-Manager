@@ -1,19 +1,63 @@
+/****************************************************
+ * Function to toggle different divs hidden/showing *
+ ****************************************************/
+function togglehidden(div_id)
+{
+	if ($('#list').is(":hidden") && $('#sortcontent').is(":hidden"))
+	{
+		$('#sidebar').animate({width:'25%'}, 0);
+		$('#content').animate({width:'65%'}, 0);
+	}
+	if (div_id == "sortcontent")
+	{
+		if ($('#' + div_id).is(":visible"))
+		{
+			$('#sortlabel').replaceWith('<a href="" onclick="return togglehidden(\'sortcontent\');" id="sortlabel">- Sort options -</a>');
+			$('#list').animate({height:'600px'}, 0);
+		}
+		else
+		{
+			$('#sortlabel').replaceWith('<a href="" onclick="return togglehidden(\'sortcontent\');" id="sortlabel">^ Sort options ^</a>');
+			$('#list').animate({height:'480px'}, 0);
+		}
+	}
+	if (div_id == "list")
+	{
+		if ($('#' + div_id).is(":visible"))
+		{
+			$('#togglelabel').replaceWith('<a href="" onclick="return togglehidden(\'list\');" id="togglelabel">- List -</a>');
+		}
+		else
+		{
+			$('#togglelabel').replaceWith('<a href="" onclick="return togglehidden(\'list\');" id="togglelabel">^ List ^</a>');
+		}
+	}
+	$('#' + div_id).toggle();
+	if ($('#list').is(":hidden") && $('#sortcontent').is(":hidden"))
+	{
+		$('#sidebar').animate({width:'10%'}, 0);
+		$('#content').animate({width:'80%'}, 0);
+	}
+	return false;
+}
+
 /**********************
  * For the movie view *
  **********************/
 // Function viewmovie, updates content navigation and content for movie info view --//
 function viewmovie(id, view)														//
 {																					//
+	Shadowbox.init();
 	if (view)																		//
 	{																				//
 		$('#contentnav').load("movies/viewcontentnav?id=" + id + "&view=" + view);	//
-		$('#contentinfo').load("movies/viewmovie?id=" + id + "&view=" + view);			//
+		$('#contentinfo').load("movies/viewmovie?id=" + id + "&view=" + view);		//
 		return false;																//
 	}																				//
 	else																			//
 	{																				//
 		$('#contentnav').load("movies/viewcontentnav?id=" + id);					//
-		$('#contentinfo').load("movies/viewmovie?id=" + id);							//
+		$('#contentinfo').load("movies/viewmovie?id=" + id);						//
 	}																				//
 	return false;																	//
 }																					//
@@ -106,7 +150,7 @@ function sortmovies()
 	var sortby = $('select.sortby option:selected').val();
 	var sortdir = $('select.sortdir option:selected').val();
 	var filter = $('select.filterby option:selected').val();
-	$('#listing').load("movies/getlist?sortby=" + sortby + "&sortdir=" + sortdir + "&filter=" + filter);
+	$('#list').load("movies/getlist?sortby=" + sortby + "&sortdir=" + sortdir + "&filter=" + filter);
 }
 
 /************************
@@ -177,6 +221,7 @@ function sortepisodes()
 function viewsettings(object)
 {
 	what = object.id;
+	$('#contentnav').load('settings/getcontentnav?what=' + what);
 	$('#contentinfo').load('settings/getsettings?what=' + what);
 	return false;
 }
@@ -206,7 +251,8 @@ function editcfg(object)
 				success: function(data)
 				{
 					alert("SAVED!" + data);
-					$('#content').load('settings/getsettings?what=database');
+					$('#contentnav').load('settings/getcontentnav?what=database');
+					$('#contentinfo').load('settings/getsettings?what=database');
 				},
 				error: function(data)
 				{
@@ -217,5 +263,9 @@ function editcfg(object)
 		case 'usercfg':
 			alert('Type: ' +type);
 			break;
+		case 'users':
+			alert('Type: ' +type);
+			break;
 	}
+	return false;
 }

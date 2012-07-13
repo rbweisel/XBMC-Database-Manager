@@ -22,34 +22,35 @@
 			$data['title'] = 'Movies';													// Set page title
 			$this->load->view('common/header', $data);									// Load page header
 			$this->load->view('movies/navigation');										// Load page navigation
-			$this->load->view('movies/sidebar');										// Load page navigation
+			$this->load->view('common/background');										// Load page background
+			$this->load->view('movies/sidebar');										// Load sidebar for movies
 			$this->load->view('common/content');										// Load page content, send $data along
 			$this->load->view('common/footer');											// Load page footer
 		}																				//
 		// End function index() --------------------------------------------------------//
 
 		// Deletes a movie from the database -------------------------------------------//
-		public function delete()														//
-		{																				//
-			$movieid = $this->input->post('id');										// Which Movie ID to delete
-			if($this->session->userdata('logged_in'))									// Check to see that a user is logged in
-			{																			//
-				$this->movie->deletemovie($movieid);									// If user is logged in, call the edit function
-			}																			//
-		}																				//
+		public function delete()							//
+		{										//
+			$movieid = $this->input->post('id');					// Which Movie ID to delete
+			if($this->session->userdata('logged_in'))				// Check to see that a user is logged in
+			{									//
+				$this->movie->deletemovie($movieid);				// If user is logged in, call the edit function
+			}									//
+		}										//
 		// End function delete() -------------------------------------------------------//
 
 		// Edit database values --------------------------------------------------------//
-		public function edit()															//
-		{																				//
-			$editwhat = $this->input->post('what');										// What to edit
-			$movieid = $this->input->post('id');										// Which Movie ID the value belongs to
-			$towhat = $this->input->post('to');											// The new value
-			if($this->session->userdata('logged_in'))									// Check to see that a user is logged in
-			{																			//
-				$this->movie->editmovie($movieid, $editwhat, $towhat);					// If user is logged in, call the edit function
-			}																			//
-		}																				//
+		public function edit()								//
+		{										//
+			$editwhat = $this->input->post('what');					// What to edit
+			$movieid = $this->input->post('id');					// Which Movie ID the value belongs to
+			$towhat = $this->input->post('to');					// The new value
+			if($this->session->userdata('logged_in'))				// Check to see that a user is logged in
+			{									//
+				$this->movie->editmovie($movieid, $editwhat, $towhat);		// If user is logged in, call the edit function
+			}									//
+		}										//
 		// End function edit() ---------------------------------------------------------//
 		
 		// Renders the html formatted movie list ---------------------------------------//
@@ -119,27 +120,28 @@
 		// End function viewmovie() ----------------------------------------------------//
 		
 		// Renders the html formatted content navigation -------------------------------//
-		public function viewcontentnav()												//
-		{																				//
-			$data = array();															// Set data to empty array
-			if($this->input->get('view') != '')											// If view isn't empty
-			{																			//
-				$this->session->set_userdata('view', $this->input->get('view'));		// set session view to view
-			}																			//
+		public function viewcontentnav()						//
+		{										//
+			$data = array();							// Set data to empty array
+			if($this->input->get('view') != '')					// If view isn't empty
+			{									//
+				$this->session->set_userdata('view', $this->input->get('view'));// set session view to view
+			}									//
 			if(!$this->session->userdata('view') || $this->session->userdata('view') == '')	// If session view isn't set or session view is empty
-			{																			//
-				$this->session->set_userdata('view', 'info');							// Set session view to info
-			}																			//
-			if($this->session->userdata('view') == 'epinfo')							// If session view is set to episode info
-			{																			//
-				$this->session->set_userdata('view', 'info');							// Set session view to info
-			}																			//
-			$id = $this->input->get('id');												//
-			$view = $this->session->userdata('view');									//
-			$data['menulist'] = $this->movie->getmoviemenu($id, $view);					//
-			$data['selected'] = $this->session->userdata('view');						//
-			$this->load->view('common/contentnav.php', $data);							//
-		}																				//
+			{									//
+				$this->session->set_userdata('view', 'info');			// Set session view to info
+			}									//
+			if($this->session->userdata('view') == 'epinfo')			// If session view is set to episode info
+			{									//
+				$this->session->set_userdata('view', 'info');			// Set session view to info
+			}									//
+			$id = $this->input->get('id');						//
+			$view = $this->session->userdata('view');				//
+			$data['menulist'] = $this->movie->getmoviemenu($id, $view);		//
+			$data['selected'] = $this->session->userdata('view');			//
+			$data['hash'] = $this->movie->getmoviehash($this->input->get('id'));
+			$this->load->view('common/contentnav.php', $data);			//
+		}										//
 		// End function viewcontentnav() -----------------------------------------------//
 
 		// Destructor ------------------------------------------------------------------//

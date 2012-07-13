@@ -5,51 +5,51 @@
 	class Movies extends CI_Controller
 	{
 		// Class constructor -----------------------------------------------------------//
-		function __construct()															//
-		{																				//
-			parent::__construct();														// Calls the parent class constructor
-			$this->load->model('movie');												// Init the model
-			$this->load->library('ConfigDB');											// Load the database config class
-			$dbconn = $this->configdb->xbmcdb();										// Gets the XBMC Database connection config
-			$this->load->database($dbconn);												// Loads the XBMC Database
-		}																				//
+		function __construct()								//
+		{										//
+			parent::__construct();							// Calls the parent class constructor
+			$this->load->model('movie');						// Init the model
+			$this->load->library('ConfigDB');					// Load the database config class
+			$dbconn = $this->configdb->xbmcdb();					// Gets the XBMC Database connection config
+			$this->load->database($dbconn);						// Loads the XBMC Database
+		}										//
 		// End __construct() -----------------------------------------------------------//
 
 		// Index controller ------------------------------------------------------------//
-		public function index()															//
-		{																				//
-			$this->load->helper(array('form', 'url'));									// Load the url helper
-			$data['title'] = 'Movies';													// Set page title
-			$this->load->view('common/header', $data);									// Load page header
-			$this->load->view('movies/navigation');										// Load page navigation
-			$this->load->view('movies/sidebar');										// Load page navigation
-			$this->load->view('common/content');										// Load page content, send $data along
-			$this->load->view('common/footer');											// Load page footer
-		}																				//
+		public function index()								//
+		{										//
+			$this->load->helper(array('form', 'url'));				// Load the url helper
+			$data['title'] = 'Movies';						// Set page title
+			$this->load->view('common/header', $data);				// Load page header
+			$this->load->view('movies/navigation');					// Load page navigation
+			$this->load->view('movies/sidebar');					// Load page navigation
+			$this->load->view('common/content');					// Load page content, send $data along
+			$this->load->view('common/footer');					// Load page footer
+		}										//
 		// End function index() --------------------------------------------------------//
 
 		// Deletes a movie from the database -------------------------------------------//
-		public function delete()														//
-		{																				//
-			$movieid = $this->input->post('id');										// Which Movie ID to delete
-			if($this->session->userdata('logged_in'))									// Check to see that a user is logged in
-			{																			//
-				$this->movie->deletemovie($movieid);									// If user is logged in, call the edit function
-			}																			//
-		}																				//
+		public function delete()							//
+		{										//
+			$movieid = $this->input->post('id');					// Which Movie ID to delete
+			if($this->session->userdata('logged_in'))				// Check to see that a user is logged in
+			{									//
+				$this->movie->deletemovie($movieid);				// If user is logged in, call the edit function
+			}									//
+		}										//
 		// End function delete() -------------------------------------------------------//
 
 		// Edit database values --------------------------------------------------------//
-		public function edit()															//
-		{																				//
-			$editwhat = $this->input->post('what');										// What to edit
-			$movieid = $this->input->post('id');										// Which Movie ID the value belongs to
-			$towhat = $this->input->post('to');											// The new value
-			if($this->session->userdata('logged_in'))									// Check to see that a user is logged in
-			{																			//
-				$this->movie->editmovie($movieid, $editwhat, $towhat);					// If user is logged in, call the edit function
-			}																			//
-		}																				//
+		public function edit()								//
+		{										//
+			$editwhat = $this->input->post('what');					// What to edit
+			$movieid = $this->input->post('id');					// Which Movie ID the value belongs to
+			$towhat = $this->input->post('to');					// The new value
+			if($this->session->userdata('logged_in'))				// Check to see that a user is logged in
+			{									//
+				$this->movie->editmovie($movieid, $editwhat, $towhat);		// If user is logged in, call the edit function
+			}									//
+		}										//
 		// End function edit() ---------------------------------------------------------//
 		
 		// Renders the html formatted movie list ---------------------------------------//
@@ -112,8 +112,6 @@
 					break;																//
 				default:																// If a view isn't matched
 					$movieinfo = $this->movie->getmovieinfo($this->input->get('id'));	// Get info about movie
-					$hash = $this->configdb->hashit($movieinfo['col2']['strPath'].$movieinfo['col2']['strFile']);
-					$movieinfo['thumb'] = $hash;
 					$this->load->view('common/info.php', $movieinfo);					// Load the info view
 					break;																//
 			}																			//

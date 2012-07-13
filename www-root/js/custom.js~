@@ -177,7 +177,8 @@ function sortepisodes()
 function viewsettings(object)
 {
 	what = object.id;
-	$('#content').load('settings/getsettings?what=' + what);
+	$('#contentnav').load('settings/getcontentnav?what=' + what);
+	$('#contentinfo').load('settings/getsettings?what=' + what);
 	return false;
 }
 // Function to save edited settings
@@ -206,7 +207,8 @@ function editcfg(object)
 				success: function(data)
 				{
 					alert("SAVED!" + data);
-					$('#content').load('settings/getsettings?what=database');
+					$('#contentnav').load('settings/getcontentnav?what=database');
+					$('#contentinfo').load('settings/getsettings?what=database');
 				},
 				error: function(data)
 				{
@@ -218,4 +220,5 @@ function editcfg(object)
 			alert('Type: ' +type);
 			break;
 	}
+	return false;
 }

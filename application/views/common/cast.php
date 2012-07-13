@@ -9,7 +9,7 @@
 		for ($i = 0; $i < count($actor); $i++)
 		{
 			$thumburl = base_url().'thumbs/'.substr($thumb[$i],0,1).'/'.$thumb[$i].'.tbn';
-			echo '<div id="actor">';
+			echo '<div class="actor"><div class="actorpic">';
 			if ( @file_get_contents($thumburl,0,NULL,0,1) )
 			{
 				echo '<a rel="shadowbox" href="'.$thumburl.'"><img class="actorthumb" src="'.$thumburl.'" /></a>';
@@ -18,8 +18,10 @@
 			{
 				echo '<img class="actorthumb" src="/img/na.jpg" />';
 			}
+			echo '</div><div class=actorname>';
 			echo '<p><b><i>'.$role[$i].'</i></b></p>';
 			echo '<p><b>'.$actor[$i].'</b></p></div>';
+			echo '</div>';
 		}
 	?>
 </table>

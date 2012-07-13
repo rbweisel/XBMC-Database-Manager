@@ -66,37 +66,55 @@
 		// End function getsettings() --------------------------------------------------//
 
 		// Edit database values --------------------------------------------------------//
-		public function edit()															//
-		{																				//
-			if ($this->session->userdata('logged_in'))									// Check to see if the user is logged in
-			{																			//
-				$this->cfg->updatedbcfg();												// Call update db cfg function
-			}																			//
-			else																		// If user isn't logged in
-			{																			//
-				redirect('main', 'refresh');											// Redirect to main page
-			}																			//
-		}																				//
+		public function edit()								//
+		{										//
+			if ($this->session->userdata('logged_in'))				// Check to see if the user is logged in
+			{									//
+				$this->cfg->updatedbcfg();					// Call update db cfg function
+			}									//
+			else									// If user isn't logged in
+			{									//
+				redirect('main', 'refresh');					// Redirect to main page
+			}									//
+		}										//
 		// End function edit() ---------------------------------------------------------//
 		
 		// Add user --------------------------------------------------------------------//
-		public function adduser()															//
-		{																				//
-			if ($this->session->userdata('logged_in'))									// Check to see if the user is logged in
-			{																			//
-				$this->cfg->adduser();												// Call update db cfg function
-			}																			//
-			else																		// If user isn't logged in
-			{																			//
-				redirect('main', 'refresh');											// Redirect to main page
-			}																			//
-		}																				//
+		public function adduser()							//
+		{										//
+			if ($this->session->userdata('logged_in'))				// Check to see if the user is logged in
+			{									//
+				$this->cfg->adduser();						// Call add user function
+			}									//
+			else									// If user isn't logged in
+			{									//
+				redirect('main', 'refresh');					// Redirect to main page
+			}									//
+		}										//
 		// End function edit() ---------------------------------------------------------//
 		
+		// Renders the html formatted content navigation -------------------------------//
+		public function getcontentnav()							//
+		{										//
+			if ($this->session->userdata('logged_in'))				// Check to see if the user is logged in
+			{									//
+				$data = array();						// Set data to empty array
+				$what = $this->input->get('what');				//
+				$data['menulist'] = $this->cfg->getmenu($what);			//
+				$data['selected'] = $this->cfg->getmenu($what);			//
+				$this->load->view('common/contentnav.php', $data);		//
+			}									//
+			else									// If user isn't logged in
+			{									//
+				redirect('main', 'refresh');					// Redirect to main page
+			}									//
+		}										//
+		// End function getcontentnav() ------------------------------------------------//
+
 		// Class destructor ------------------------------------------------------------//
-		function __destruct()															//
-		{																				//
-		}																				//
+		function __destruct()								//
+		{										//
+		}										//
 		// End __destruct() ------------------------------------------------------------//
 	}
 /* End of file settings.php */

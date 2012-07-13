@@ -1,7 +1,29 @@
+				<script>
+					var uri = "<?php if ( $hash ) { echo base_url().'thumbs/Fanart/'.$hash.'.tbn'; } ?>";
+					var exists = "<?php if ( @file_get_contents(base_url().'thumbs/Fanart/'.$hash.'.tbn',0,NULL,0,1) ) { echo '1'; } else { echo '0'; } ?>"
+					if (exists == "0")
+					{
+						$('#bglink').replaceWith('<div id="nobglink"></div>');
+						$('#background').css("background-image", "url()");
+					}
+					else
+					{
+						$('#nobglink').replaceWith('<a title="Backdrop" id="bglink" onclick="Shadowbox.open({content: \'' + uri + '\', player: \'img\', title: \'Backdrop\'});"></a>');
+						$('#bglink').replaceWith('<a title="Backdrop" id="bglink" onclick="Shadowbox.open({content: \'' + uri + '\', player: \'img\', title: \'Backdrop\'});"></a>');
+						$('#background').css("background-image", "url(" + uri + ")");
+					}
+				</script>
 				<?php
-				foreach ($menulist as $link)
+				if (is_array($menulist))
 				{
-					echo $link;
+					foreach ($menulist as $link)
+					{
+						echo $link;
+					}
+				}
+				else
+				{
+					echo $menulist;
 				}
 				?>
 

@@ -7,7 +7,7 @@
 	echo '<div id="backdrop">';
 	if ( @file_get_contents($arturl,0,NULL,0,1) )
 	{
-		echo '<a rel="shadowbox" href="'.$arturl.'"><img class="fanart" src="'.$arturl.'" /></a>';
+		echo '<a rel="shadowbox" title="Backdrop" href="'.$arturl.'"><img class="fanart" src="'.$arturl.'" /></a>';
 	}
 	else
 	{
