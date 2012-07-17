@@ -226,7 +226,7 @@
 																						//
 			foreach ($query->result() as $row)											// Loop through the results
 			{																			// Create a TV-show link with the values, put in array
-				array_push($link,'<li id="'.$row->idShow.'" onclick="return viewtv(this, \'\');" class="tvshowlink""><table><tr>'.$row->c00.'</td></tr></table></li>');
+				array_push($link,'<li id="'.$row->idShow.'" onclick="return viewtv(this, \'\');" class="tvshowlink"">'.$row->c00.'</li>');
 			}																			//
 			return $link;																// Return with the link array
 		}																				//
@@ -300,7 +300,7 @@
 		{																				//
 			$link = array();															// seasons is empty array
 			//array_push($link,'<a href="" id="'.$idshow.'" onclick="return sortepisodes(this);" title="season" name="all">All seasons</a>');	// Set first option to all seasons
-			array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="all"><table class="seasonlink"><tr><td>All seasons</td></tr></table></li>');
+			array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="all">All seasons</li>');
 			$this->db->select('c12');													// Prepare select statement (season column)
 			$this->db->where('idShow', $idshow);										// Prepare where statement (idshow must match)
 			$this->db->group_by('c12');													// Only get one row for each season
@@ -309,16 +309,34 @@
 			{																			// Put each returned row into the seasons array as an option
 				if ($row->c12 == '0')
 				{
-					array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'"><table class="seasonlink"><tr><td>Specials</td></tr></table></li>');
+					array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'">Specials</li>');
 				}
 				else
 				{
-					array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'"><table class="seasonlink"><tr><td>Season '.$row->c12.'</td></tr></table></li>');
+					array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'">Season '.$row->c12.'</li>');
 				}
 			}																			//
 			return $link;															// Return the seasons array
 		}																				//
 		// End function getseasons($idshow) --------------------------------------------//
+		
+		public function getshowhash($id = '1')
+		{
+			$hash = '';
+
+			$select = 'p.strPath';
+			$this->db->select($select);													// Prepare SELECT clause
+			$this->db->from('tvshow AS s');												// Select from tvshow table as s
+			$this->db->join('tvshowlinkpath AS tslp', 'tslp.idShow = s.idShow', 'left');// Also select from tvshowlinkpath table as tslp
+			$this->db->join('path AS p', 'p.idPath = tslp.idPath', 'left');				// And select from path table as p
+			$this->db->where('s.idShow', $id);											// Select rows WHERE idShow matches
+			$query = $this->db->get();													// Execute query
+			foreach ($query->result() as $row)
+			{
+				$hash = $this->configdb->hashit($row->strPath);
+			}
+			return $hash;
+		}
 	}
 /* End of file movie.php */  
 /* Location: ./application/models/movie.php */  

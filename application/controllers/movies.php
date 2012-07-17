@@ -120,28 +120,28 @@
 		// End function viewmovie() ----------------------------------------------------//
 		
 		// Renders the html formatted content navigation -------------------------------//
-		public function viewcontentnav()						//
-		{										//
-			$data = array();							// Set data to empty array
-			if($this->input->get('view') != '')					// If view isn't empty
-			{									//
-				$this->session->set_userdata('view', $this->input->get('view'));// set session view to view
-			}									//
+		public function viewcontentnav()												//
+		{																				//
+			$data = array();															// Set data to empty array
+			if($this->input->get('view') != '')											// If view isn't empty
+			{																			//
+				$this->session->set_userdata('view', $this->input->get('view'));		// set session view to view
+			}																			//
 			if(!$this->session->userdata('view') || $this->session->userdata('view') == '')	// If session view isn't set or session view is empty
-			{									//
-				$this->session->set_userdata('view', 'info');			// Set session view to info
-			}									//
-			if($this->session->userdata('view') == 'epinfo')			// If session view is set to episode info
-			{									//
-				$this->session->set_userdata('view', 'info');			// Set session view to info
-			}									//
-			$id = $this->input->get('id');						//
-			$view = $this->session->userdata('view');				//
-			$data['menulist'] = $this->movie->getmoviemenu($id, $view);		//
-			$data['selected'] = $this->session->userdata('view');			//
-			$data['hash'] = $this->movie->getmoviehash($this->input->get('id'));
-			$this->load->view('common/contentnav.php', $data);			//
-		}										//
+			{																			//
+				$this->session->set_userdata('view', 'info');							// Set session view to info
+			}																			//
+			if($this->session->userdata('view') == 'epinfo')							// If session view is set to episode info
+			{																			//
+				$this->session->set_userdata('view', 'info');							// Set session view to info
+			}																			//
+			$id = $this->input->get('id');												//
+			$view = $this->session->userdata('view');									//
+			$data['menulist'] = $this->movie->getmoviemenu($id, $view);					//
+			$data['selected'] = $this->session->userdata('view');						//
+			$data['hash'] = $this->movie->getmoviehash($this->input->get('id'));		//
+			$this->load->view('common/contentnav.php', $data);							//
+		}																				//
 		// End function viewcontentnav() -----------------------------------------------//
 
 		// Destructor ------------------------------------------------------------------//

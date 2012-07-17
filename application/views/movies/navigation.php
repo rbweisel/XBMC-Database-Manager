@@ -4,9 +4,3 @@
 				<a href="music">Music</a>
 				<a href="settings">Settings</a>
 			</div>
-			<script>
-				$(document).ready(function()
-				{
-					$('#contentnav').load("movies/getcontentmenu");
-				});
-			</script>

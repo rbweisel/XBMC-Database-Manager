@@ -148,6 +148,7 @@
 			$view = $this->session->userdata('view');									// View
 			$data['menulist'] = $this->show->getshowmenu($idshow, $idepisode, $view);	// Get the content navigation menu items
 			$data['selected'] = $this->session->userdata('view');						// The selected menu item is same as view
+			$data['hash'] = $this->show->getshowhash($idshow);							//
 			$this->load->view('common/contentnav.php', $data);							// Load the content navigation menu
 		}																				//
 		// End function viewcontentnav() -----------------------------------------------//

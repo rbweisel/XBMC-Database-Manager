@@ -173,8 +173,6 @@ a {
  * Sidebar (lists) *
  *******************/
 #sidebar {
-	filter: alpha(opacity=90);
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 	width: 300px;
 	top: 10px;
 	left: 5px;
@@ -241,8 +239,9 @@ a {
 }
 #listcontent {
 	width: 100%;
-	border-top:1px solid #999;
-	border-bottom:1px solid #999;
+	border: 1px inset black;
+	background-color: rgb(210,210,210);
+	background-color: rgba(0,0,0,0.05);
 	text-align: left;
 	overflow: auto;
 	top: 20px;
@@ -256,8 +255,9 @@ a {
 }
 #showlist {
 	width: 100%;
-	border-top:1px solid #999;
-	border-bottom:1px solid #999;
+	border: 1px inset black;
+	background-color: rgb(210,210,210);
+	background-color: rgba(0,0,0,0.05);
 	text-align: left;
 	overflow: auto;
 	top: 20px;
@@ -271,13 +271,15 @@ a {
 }
 #seasonlist {
 	width: 100%;
-	border-top:1px solid #999;
-	border-bottom:1px solid #999;
+	border: 1px inset black;
+	background-color: rgb(210,210,210);
+	#background-color: rgba(0,0,0,0.05);
 	text-align: left;
 	overflow: auto;
 	bottom: 25px;
 	left: 0px;
 	position:absolute;
+	z-index: 0;
 }
 #eplistheading {
 	left: 0px;
@@ -285,8 +287,10 @@ a {
 }
 #eplist {
 	width: 100%;
-	border-top:1px solid #999;
-	border-bottom:1px solid #999;
+	#border-top:1px solid #999;
+	#border-bottom:1px solid #999;
+	border: 1px inset black;
+	background-color: rgba(0,0,0,0.1);
 	text-align: left;
 	overflow: auto;
 	bottom: 0px;
@@ -299,8 +303,13 @@ a {
 	text-decoration:none;
 }
 #list li {
+	padding: 3px;
 	cursor: default;
 	list-style:none;
+}
+#list h4 {
+	text-align: center;
+	padding: 3px;
 }
 .listtable th {
 	width: 40px;
@@ -316,8 +325,6 @@ a {
 	bottom: 10px;
 	position: absolute;
 	background-color: white;
-	filter: alpha(opacity=90);
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 }
 /**********************
  * Content navigation *
