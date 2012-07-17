@@ -5,12 +5,14 @@
 					{
 						$('#bglink').replaceWith('<div id="nobglink"></div>');
 						$('#background').css("background-image", "url()");
+						$('#background').css("background-color", "transparent");
 					}
 					else
 					{
 						$('#nobglink').replaceWith('<a title="Backdrop" id="bglink" onclick="Shadowbox.open({content: \'' + uri + '\', player: \'img\', title: \'Backdrop\'});"></a>');
 						$('#bglink').replaceWith('<a title="Backdrop" id="bglink" onclick="Shadowbox.open({content: \'' + uri + '\', player: \'img\', title: \'Backdrop\'});"></a>');
 						$('#background').css("background-image", "url(" + uri + ")");
+						$('#background').css("background-color", "black");
 					}
 				</script>
 				<?php

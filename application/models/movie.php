@@ -222,7 +222,7 @@
 
 			foreach ($query->result() as $row)
 			{
-				array_push($link,'<a href="" id="'.$row->idMovie.'" onclick="return viewmovie(this.id);">'.$row->c00.'</a>');
+				array_push($link,'<li id="'.$row->idMovie.'" onclick="return viewmovie(this.id);">'.$row->c00.'</ĺi>');
 			}
 
 			return $link;						// Return a array with links to the movies.

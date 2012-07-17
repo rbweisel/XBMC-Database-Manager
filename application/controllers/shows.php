@@ -22,6 +22,7 @@
 			$data['title'] = 'TV-Shows';												// Set page title
 			$this->load->view('common/header', $data);									// Load page header
 			$this->load->view('shows/navigation');										// Load page navigation
+			$this->load->view('common/background');										// Load page background
 			$this->load->view('shows/sidebar');											// Load page navigation
 			$this->load->view('common/content');										// Load page content, send $data along
 			$this->load->view('common/footer');											// Load page footer
@@ -72,11 +73,11 @@
 		// End function getepisodes()---------------------------------------------------//
 
 		// Renders the html formatted episode list menu --------------------------------//
-		public function getepisodesmenu()												//
+		public function getseasons()													//
 		{																				//
 			$idshow = $this->input->get('idshow');										// TV-Show ID
-			$data['seasons'] = $this->show->getseasons($idshow);						// Get the seasons for the TV-Show
-			$this->load->view('shows/episodelistmenu', $data);							// Load the list menu
+			$data['list'] = $this->show->getseasonlinks($idshow);						// Get the seasons for the TV-Show
+			$this->load->view('common/list', $data);									// Load the list menu
 		}																				//
 		// End function getepisodesmenu() ----------------------------------------------//
 				

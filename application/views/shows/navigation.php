@@ -10,4 +10,3 @@
 				//	$('#contentnav').load("shows/getcontentmenu");
 				//});
 			</script>
-			<div id="sidebar" class="roundcorners">

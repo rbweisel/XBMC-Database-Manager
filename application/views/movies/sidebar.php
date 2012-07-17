@@ -2,8 +2,10 @@
 				<script type="text/javascript">
 					Shadowbox.init();
 				</script>
-				<div id="sort"class="toggle">
-					<a href="" onclick="return togglehidden('sortcontent');" id="sortlabel">- Sort options -</a>
+				<div id="sort">
+					<div id="sortheading" class="header">
+						<a href="" onclick="return togglehidden('sortcontent');" id="sortlabel">- Sort options -</a>
+					</div>
 					<div id="sortcontent">
 						<table border="0">
 							<tr>
@@ -38,23 +40,22 @@
 										<option value="notwatched" id="notwatched">Not watched</option>
 									</select>
 								</td>
-							</tr><tr>
-								<td>
-									<input type="button" onclick="sortmovies()" value="Refresh"/>
-								</td>
 							</tr>
 						</table>
+						<input type="button" onclick="sortmovies()" value="Refresh"/>
 					</div>
 				</div>
-				<div id="togglelist" class="toggle">
-					<a href="" onclick="return togglehidden('list');" id="togglelabel">^ List ^</a>
-					<div id="list">
+				<div id="list">
+					<div id="listheading" class="header">
+						<a href="" onclick="return togglehidden('listcontent');" id="listlabel">^ Movies ^</a>
+					</div>
+					<div id="listcontent">
 						<!-- Placeholder for movie/show/music list -->
 						<script>
 							$(document).ready(function()
 							{
 								$('#sortcontent').hide();
-								$('#list').load("movies/getlist");
+								$('#listcontent').load("movies/getlist");
 							});
 						</script>
 					</div>

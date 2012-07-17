@@ -41,7 +41,7 @@ if(isset($thumb))
 ?>
 
 <h1><?php echo $col2['0'] ?></h1>
-<table border="1">
+<table border="0">
 	<!--Loops throuch arrays containing info, printing to a table-->
 	<?php
 		for ($i = 1; $i < count($col1); $i++)

@@ -40,37 +40,37 @@
 			switch ($view)																//
 			{																			//
 				case 'info':															//
-					array_push($menu,'<a class="current" href="" id="'.$idshow.'" onclick="return viewtv(this, \'info\');" name="'.$idepisode.'" class="showlink">Info</a>');													//
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'cast\');" name="'.$idepisode.'" class="showlink">Cast</a>');
+					array_push($menu,'<a class="current" href="" id="'.$idshow.'" onclick="return viewtv(this, \'info\');" title="'.$idepisode.'" title="showinfo">Info</a>');						//
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'cast\');" title="'.$idepisode.'" title="cast">Cast</a>');
 					if($this->session->userdata('logged_in'))							//
 					{																	//
-						array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'edit\');" name="'.$idepisode.'" class="showlink">Edit</a>');												//
+						array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'edit\');" title="'.$idepisode.'" title="edit">Edit</a>');									//
 					}																	//
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" name="'.$idepisode.'" class="episodelink">Episode Info</a>');													//
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" title="'.$idepisode.'" title="epinfo">Episode Info</a>');													//
 					break;																//
 				case 'cast':															//
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'info\');" name="'.$idepisode.'" class="showlink">Info</a>');
-					array_push($menu,'<a class="current" href="" id="'.$idshow.'" onclick="return viewtv(this, \'cast\');" name="'.$idepisode.'" class="showlink">Cast</a>');
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'info\');" title="'.$idepisode.'" title="showinfo">Info</a>');
+					array_push($menu,'<a class="current" href="" id="'.$idshow.'" onclick="return viewtv(this, \'cast\');" title="'.$idepisode.'" title="cast">Cast</a>');
 					if($this->session->userdata('logged_in'))							//
 					{																	//
-						array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'edit\');" name="'.$idepisode.'" class="showlink">Edit</a>');												//
+						array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'edit\');" title="'.$idepisode.'" title="edit">Edit</a>');												//
 					}																	//
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" name="'.$idepisode.'" class="episodelink">Episode Info</a>');
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" title="'.$idepisode.'" title="epinfo">Episode Info</a>');
 					break;																//
 				case 'edit':															//
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'info\');" name="'.$idepisode.'" class="showlink">Info</a>');
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'cast\');" name="'.$idepisode.'" class="showlink">Cast</a>');
-					array_push($menu,'<a class="current" href="" id="'.$idshow.'" onclick="return viewtv(this, \'edit\');" name="'.$idepisode.'" class="showlink">Edit</a>');
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" name="'.$idepisode.'" class="episodelink">Episode Info</a>');
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'info\');" title="'.$idepisode.'" title="showinfo">Info</a>');
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'cast\');" title="'.$idepisode.'" title="cast">Cast</a>');
+					array_push($menu,'<a class="current" href="" id="'.$idshow.'" onclick="return viewtv(this, \'edit\');" title="'.$idepisode.'" title="edit">Edit</a>');
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" title="'.$idepisode.'" title="epinfo">Episode Info</a>');
 					break;																//
 				case 'epinfo':															//
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'info\');" name="'.$idepisode.'" class="showlink">Info</a>');
-					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'cast\');" name="'.$idepisode.'" class="showlink">Cast</a>');
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'info\');" title="'.$idepisode.'" title="showinfo">Info</a>');
+					array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'cast\');" title="'.$idepisode.'" title="cast">Cast</a>');
 					if($this->session->userdata('logged_in'))							//
 					{																	//
-						array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'edit\');" name="'.$idepisode.'" class="showlink">Edit</a>');
+						array_push($menu,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'edit\');" title="'.$idepisode.'" title="edit">Edit</a>');
 					}																	//
-					array_push($menu,'<a class="current" href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" name="'.$idepisode.'" class="episodelink">Episode Info</a>');
+					array_push($menu,'<a class="current" href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" title="'.$idepisode.'" title="epinfo">Episode Info</a>');
 					break;																//
 			}																			//
 			return $menu;																//
@@ -226,7 +226,7 @@
 																						//
 			foreach ($query->result() as $row)											// Loop through the results
 			{																			// Create a TV-show link with the values, put in array
-				array_push($link,'<a href="" id="'.$row->idShow.'" onclick="return viewtv(this,\'\');" class="showlink">'.$row->c00.'</a>');
+				array_push($link,'<li id="'.$row->idShow.'" onclick="return viewtv(this, \'\');" class="tvshowlink""><table><tr>'.$row->c00.'</td></tr></table></li>');
 			}																			//
 			return $link;																// Return with the link array
 		}																				//
@@ -244,8 +244,15 @@
 				$queryseasons = $this->db->get('episodeview');							//
 				foreach ($queryseasons->result() as $row)								//
 				{																		//
-					array_push($link,'<b><h4>Season '.$row->c12.'</h4></b>');			//
-					$this->db->select('c13,c00,idEpisode');								//
+					if ($row->c12 == '0')
+					{
+						array_push($link,'<b><h4>Specials</h4></b>');			//
+					}
+					else
+					{
+						array_push($link,'<b><h4>Season '.$row->c12.'</h4></b>');			//
+					}
+					$this->db->select('c12,c13,c00,idEpisode');								//
 					$this->db->where('idShow', $idshow);								//
 					if ($filter == 'watched')											//
 					{																	//
@@ -260,13 +267,13 @@
 					$queryepisodes = $this->db->get('episodeview');						//
 					foreach ($queryepisodes->result() as $row2)							//
 					{																	//
-						array_push($link,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" class="episodelink" name="'.$row2->idEpisode.'">'.$row2->c13.' - '.$row2->c00.'</a>');
+						array_push($link,'<li id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" class="eplink" title="'.$row2->idEpisode.'"><table class="listtable"><tr><th>'.$row2->c12.'x'.$row2->c13.'</th><td>'.$row2->c00.'</td></tr></table></li>');
 					}																	//
 				}																		//
 			}																			//
 			else																		//
 			{																			//
-				$this->db->select('c13,c00,idEpisode');									//
+				$this->db->select('c12,c13,c00,idEpisode');									//
 				$this->db->where('idShow', $idshow);									//
 				$this->db->where('c12', $season);										//
 				if ($filter == 'watched')												//
@@ -281,7 +288,7 @@
 				$queryepisodes = $this->db->get('episodeview');							//
 				foreach ($queryepisodes->result() as $row2)								//
 				{																		//
-					array_push($link,'<a href="" id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" class="episodelink" name="'.$row2->idEpisode.'">'.$row2->c13.' - '.$row2->c00 . '</a>');
+					array_push($link,'<li id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" class="eplink" title="'.$row2->idEpisode.'"><table class="listtable"><tr><th>'.$row2->c12.'x'.$row2->c13.'</th><td>'.$row2->c00.'</td></tr></table></li>');
 				}																		//
 			}																			//
 			return $link;																//
@@ -289,19 +296,27 @@
 		// End function getepisodelinks($idshow, $season, $filter) ---------------------//
 		
 		// Returns a option list of the seasons in chosen TV-show ----------------------//
-		public function getseasons($idshow)												//
+		public function getseasonlinks($idshow)												//
 		{																				//
-			$seasons = array();															// seasons is empty array
-			array_push($seasons,'<option value="all" id="'.$idshow.'">All</option>');	// Set first option to all seasons
+			$link = array();															// seasons is empty array
+			//array_push($link,'<a href="" id="'.$idshow.'" onclick="return sortepisodes(this);" title="season" name="all">All seasons</a>');	// Set first option to all seasons
+			array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="all"><table class="seasonlink"><tr><td>All seasons</td></tr></table></li>');
 			$this->db->select('c12');													// Prepare select statement (season column)
 			$this->db->where('idShow', $idshow);										// Prepare where statement (idshow must match)
 			$this->db->group_by('c12');													// Only get one row for each season
 			$query = $this->db->get('episodeview');										// Execute query
 			foreach ($query->result() as $row)											// Loop through the results
 			{																			// Put each returned row into the seasons array as an option
-				array_push($seasons,'<option value="'.$row->c12.'" id="'.$idshow.'">Season '.$row->c12.'</option>');
+				if ($row->c12 == '0')
+				{
+					array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'"><table class="seasonlink"><tr><td>Specials</td></tr></table></li>');
+				}
+				else
+				{
+					array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'"><table class="seasonlink"><tr><td>Season '.$row->c12.'</td></tr></table></li>');
+				}
 			}																			//
-			return $seasons;															// Return the seasons array
+			return $link;															// Return the seasons array
 		}																				//
 		// End function getseasons($idshow) --------------------------------------------//
 	}

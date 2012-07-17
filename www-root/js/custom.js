@@ -1,42 +1,148 @@
-/****************************************************
- * Function to toggle different divs hidden/showing *
- ****************************************************/
+/**********************************************************
+ * Function to toggle divs in tv-show list hidden/showing *
+ **********************************************************/
+function tvtoggle(div_id)
+{
+	switch(div_id)
+	{
+		case 'sortcontent':
+			if ($('#sortcontent').is(":visible"))
+			{
+				$('#sortheading').replaceWith('<a href="" onclick="return tvtoggle(\'sortcontent\');" id="sortheading" class="header">- Sort options -</a>');
+				$('#sort').animate({height:'25px'}, 0);
+				$('#list').animate({top:'25px'}, 0);
+			}
+			else
+			{
+				$('#sortheading').replaceWith('<a href="" onclick="return tvtoggle(\'sortcontent\');" id="sortheading" class="header">^ Sort options ^</a>');
+				$('#sort').animate({height:'140px'}, 0);
+				$('#list').animate({top:'140px'}, 0);
+				$('#seasonlistheading').animate({top:'25px'}, 0);
+				$('#eplistheading').animate({top:'50px'}, 0); 
+				$('#eplist').animate({top:'75px'}, 0); 
+			}
+			break;
+		case 'showlist':
+			if ($('#showlist').is(":visible"))
+			{
+				$('#showlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'showlist\');" id="showlistheading" class="header">- TV-Shows -</a>');
+				
+			}
+			else
+			{
+				$('#showlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'showlist\');" id="showlistheading" class="header">^ TV-Shows ^</a>');
+				$('#seasonlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'seasonlist\');" id="seasonlistheading" class="header">- Season -</a>');
+				$('#eplistheading').replaceWith('<a href="" onclick="return tvtoggle(\'eplist\');" id="eplistheading" class="header">- Episodes -</a>');
+				$('#seasonlist').hide();
+				$('#eplist').hide();
+			}
+			break;
+		case 'seasonlist':
+			if ($('#seasonlist').is(":visible"))
+			{
+				$('#seasonlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'seasonlist\');" id="seasonlistheading" class="header">- Season -</a>');
+			}
+			else
+			{
+				$('#showlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'showlist\');" id="showlistheading" class="header">- TV-Shows -</a>');
+				$('#seasonlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'seasonlist\');" id="seasonlistheading" class="header">^ Season ^</a>');
+				$('#eplistheading').replaceWith('<a href="" onclick="return tvtoggle(\'eplist\');" id="eplistheading" class="header">- Episodes -</a>');
+				$('#seasonlistheading').animate({top:'25px'}, 0);
+				$('#seasonlist').animate({top:'50px'}, 0);
+				$('#seasonlist').animate({bottom:'25px'}, 0);
+				$('#showlist').hide();
+				$('#eplist').hide();
+			}
+			break;
+		case 'eplist':
+			if ($('#eplist').is(":visible"))
+			{
+				$('#eplistheading').replaceWith('<a href="" onclick="return tvtoggle(\'eplist\');" id="eplistheading" class="header">- Episodes -</a>');
+			}
+			else
+			{
+				$('#showlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'showlist\');" id="showlistheading" class="header">- TV-Shows -</a>');
+				$('#seasonlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'seasonlist\');" id="seasonlistheading" class="header">- Season -</a>');
+				$('#eplistheading').replaceWith('<a href="" onclick="return tvtoggle(\'eplist\');" id="eplistheading" class="header">^ Episodes ^</a>');
+				$('#seasonlistheading').animate({top:'25px'}, 0);
+				$('#eplistheading').animate({top:'50px'}, 0); 
+				$('#eplist').animate({top:'75px'}, 0); 
+				$('#showlist').hide();
+				$('#seasonlist').hide();
+			}
+			break;
+	}
+	$('#' + div_id).toggle();
+	
+	if ($('#sortcontent').is(":hidden") && $('#showlist').is(":hidden") && $('#seasonlist').is(":hidden") && $('#eplist').is(":hidden"))
+	{
+		$('#sidebar').animate({width:'130px'}, 0);
+		$('#sidebar').animate({height:'95px'}, 0);
+		$('#content').animate({left:'180px'}, 0);
+	}
+	else if ($('#sortcontent').is(":visible") && $('#showlist').is(":hidden") && $('#seasonlist').is(":hidden") && $('#eplist').is(":hidden"))
+	{
+		$('#sidebar').removeAttr('style'); 
+		$('#sidebar').animate({height:'208px'}, 10);
+		$('#content').removeAttr('style'); 
+	}
+	else
+	{
+		$('#sidebar').removeAttr('style'); 
+		$('#content').removeAttr('style'); 
+	}
+	return false;
+}
+
+/********************************************************
+ * Function to toggle divs in movie list hidden/showing *
+ ********************************************************/
 function togglehidden(div_id)
 {
-	if ($('#list').is(":hidden") && $('#sortcontent').is(":hidden"))
-	{
-		$('#sidebar').animate({width:'25%'}, 0);
-		$('#content').animate({width:'65%'}, 0);
-	}
 	if (div_id == "sortcontent")
 	{
 		if ($('#' + div_id).is(":visible"))
 		{
 			$('#sortlabel').replaceWith('<a href="" onclick="return togglehidden(\'sortcontent\');" id="sortlabel">- Sort options -</a>');
-			$('#list').animate({height:'600px'}, 0);
+			$('#sort').animate({height:'25px'}, 0);
+			$('#list').animate({top:'25px'}, 0);
 		}
 		else
 		{
 			$('#sortlabel').replaceWith('<a href="" onclick="return togglehidden(\'sortcontent\');" id="sortlabel">^ Sort options ^</a>');
-			$('#list').animate({height:'480px'}, 0);
+			$('#sort').animate({height:'140px'}, 0);
+			$('#list').animate({top:'140px'}, 0);
 		}
 	}
-	if (div_id == "list")
+	if (div_id == "listcontent")
 	{
 		if ($('#' + div_id).is(":visible"))
 		{
-			$('#togglelabel').replaceWith('<a href="" onclick="return togglehidden(\'list\');" id="togglelabel">- List -</a>');
+			$('#listlabel').replaceWith('<a href="" onclick="return togglehidden(\'listcontent\');" id="togglelabel">- Movies -</a>');
 		}
 		else
 		{
-			$('#togglelabel').replaceWith('<a href="" onclick="return togglehidden(\'list\');" id="togglelabel">^ List ^</a>');
+			$('#listlabel').replaceWith('<a href="" onclick="return togglehidden(\'listcontent\');" id="togglelabel">^ Movies ^</a>');
 		}
 	}
+	
 	$('#' + div_id).toggle();
-	if ($('#list').is(":hidden") && $('#sortcontent').is(":hidden"))
+	if ($('#listcontent').is(":hidden") && $('#sortcontent').is(":visible"))
 	{
-		$('#sidebar').animate({width:'10%'}, 0);
-		$('#content').animate({width:'80%'}, 0);
+		$('#sidebar').removeAttr('style'); 
+		$('#sidebar').animate({height:'162px'}, 10);
+		$('#content').removeAttr('style'); 
+	}
+	if ($('#listcontent').is(":visible"))
+	{
+		$('#sidebar').removeAttr('style'); 
+		$('#content').removeAttr('style'); 
+	}
+	if ($('#listcontent').is(":hidden") && $('#sortcontent').is(":hidden"))
+	{
+		$('#sidebar').animate({width:'130px'}, 0);
+		$('#sidebar').animate({height:'46px'}, 0);
+		$('#content').animate({left:'180px'}, 0);
 	}
 	return false;
 }
@@ -59,6 +165,9 @@ function viewmovie(id, view)														//
 		$('#contentnav').load("movies/viewcontentnav?id=" + id);					//
 		$('#contentinfo').load("movies/viewmovie?id=" + id);						//
 	}																				//
+	$('#list li').removeAttr('style');
+	$('#' + id).css('background-color',"black");
+	$('#' + id).css('color',"white");
 	return false;																	//
 }																					//
 // End function viewmovie(id, view) ------------------------------------------------//
@@ -150,7 +259,13 @@ function sortmovies()
 	var sortby = $('select.sortby option:selected').val();
 	var sortdir = $('select.sortdir option:selected').val();
 	var filter = $('select.filterby option:selected').val();
-	$('#list').load("movies/getlist?sortby=" + sortby + "&sortdir=" + sortdir + "&filter=" + filter);
+	$('#listcontent').load("movies/getlist?sortby=" + sortby + "&sortdir=" + sortdir + "&filter=" + filter);
+	if ($('#listcontent').is(":hidden"))
+	{
+		$('#sidebar').removeAttr('style'); 
+		$('#content').removeAttr('style'); 
+		$('#listcontent').toggle();
+	}
 }
 
 /************************
@@ -160,22 +275,27 @@ function sortmovies()
 function viewtv(object, view)
 {
 	var idshow = object.id;
-	var idepisode = object.name ? object.name : '0';
+	var idepisode = object.title ? object.title : '0';
 	var what = $(object).attr('class');
-	
 	if (view)
 	{
 		switch (what)
 		{
-			case 'showlink':
+			case 'tvshowlink':
 				$('#contentnav').load("shows/viewcontentnav?idshow="+idshow+"&idepisode="+idepisode+"&view="+view);
 				$('#contentinfo').load('shows/view?idshow='+idshow+"&idepisode="+idepisode+"&view="+view);
-				$('#episodelistmenu').load('shows/getepisodesmenu?idshow='+idshow);
-				$('#episodelist').load('shows/getepisodes?idshow='+idshow);
+				$('#seasonlist').load('shows/getseasons?idshow='+idshow);
+				$('#eplist').load('shows/getepisodes?idshow='+idshow);
+				$('#showlist li').removeAttr('style');
 				break;
-			case 'episodelink':
+			case 'eplink':
 				$('#contentnav').load("shows/viewcontentnav?idshow=" + idshow + "&idepisode=" + idepisode+"&view="+view);
 				$('#contentinfo').load('shows/view?idshow=' + idshow + "&idepisode=" + idepisode + "&view=" + view);
+				$('#eplist li').removeAttr('style');
+				break;
+			default:
+				$('#contentnav').load("shows/viewcontentnav?idshow="+idshow+"&idepisode="+idepisode+"&view="+view);
+				$('#contentinfo').load('shows/view?idshow='+idshow+"&idepisode="+idepisode+"&view="+view);
 				break;
 		}
 	}
@@ -183,18 +303,28 @@ function viewtv(object, view)
 	{
 		switch (what)
 		{
-			case 'showlink':
+			case 'tvshowlink':
 				$('#contentnav').load("shows/viewcontentnav?idshow="+idshow+"&idepisode="+idepisode);
 				$('#contentinfo').load('shows/view?idshow='+idshow+"&idepisode="+idepisode);
-				$('#episodelistmenu').load('shows/getepisodesmenu?idshow='+idshow);
-				$('#episodelist').load('shows/getepisodes?idshow='+idshow);
+				$('#seasonlist').load('shows/getseasons?idshow='+idshow);
+				$('#eplist').load('shows/getepisodes?idshow='+idshow);
+				$('#showlist li').removeAttr('style');
 				break;
-			case 'episodelink':
+			case 'eplink':
 				$('#contentnav').load("shows/viewcontentnav?idshow=" + idshow + "&idepisode=" + idepisode);
-				alert("Show ID: " + idshow + " Episode ID: " + idepisode + " View: NO! What: " + what);
 				$('#contentinfo').load('shows/view?idshow=' + idshow + "&idepisode=" + idepisode);
+				$('#eplist li').removeAttr('style');
+				break;
+			default:
+				$('#contentnav').load("shows/viewcontentnav?idshow="+idshow+"&idepisode="+idepisode);
+				$('#contentinfo').load('shows/view?idshow='+idshow+"&idepisode="+idepisode);
 				break;
 		}
+	}
+	if (what == 'tvshowlink' || what == 'eplink')
+	{
+		$(object).css('background-color',"black");
+		$(object).css('color',"white");
 	}
 	return false;
 }
@@ -206,13 +336,16 @@ function sortshows()
 	$('#showlist').load("shows/getlist?sortby=" + sortby + "&sortdir=" + sortdir + "&filter=" + filter);
 }
 // Function sortepisodes, updates episode list based on sorting options
-function sortepisodes()
+function sortepisodes(object)
 {
-	var idshow = $('select.season option:selected').attr("id");
-	var season = $('select.season option:selected').val();
-	var filter = $('select.filter option:selected').val();
-	//var filter = $('select.filter option:selected').val();
-	$('#episodelist').load('shows/getepisodes?idshow=' + idshow + '&season='+season+'&filter='+filter);
+	var idshow = object.id;
+	var season = object.title ? object.title : '0';
+	$('#eplist').load('shows/getepisodes?idshow=' + idshow + '&season=' + season);
+	tvtoggle('eplist');
+	$('#seasonlist li').removeAttr('style');
+	$(object).css('background-color',"black");
+	$(object).css('color',"white");
+	return false;
 }
 
 /*************************
