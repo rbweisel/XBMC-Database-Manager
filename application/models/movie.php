@@ -130,6 +130,10 @@
 				$info['col1'] = array_values($info['col1']);
 				$info['col2'] = array_values($info['col2']);
 			}
+			$info['col2']['0'] = '<div class="editable title">'.$info['col2']['0'].'</div>';
+			$info['col2']['12'] = '<div class="editable">'.$info['col2']['12'].'</div>';
+			$info['col2']['2'] = '<div class="editable">'.$info['col2']['2'].'</div>';
+			$info['col2']['3'] = '<div class="editable">'.$info['col2']['3'].'</div>';
 
 			return $info;												// Return a array with links to the movies.
 		}

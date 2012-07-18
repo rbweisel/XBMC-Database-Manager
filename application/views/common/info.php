@@ -25,11 +25,11 @@ if(isset($thumb))
 		$imginfo = getimagesize($thumburl);
 		if(($imginfo[0]/$imginfo[1])>2)			//Image is twice as wide as it is high
 		{
-			echo '<a rel="shadowbox" title="Banner" href="'.$thumburl.'"><img class="banner" src="'.$thumburl.'" /></a>';
+			echo '<div id="banner"><a rel="shadowbox" title="Banner" href="'.$thumburl.'"><img class="banner" src="'.$thumburl.'" /></a></div>';
 		}
 		else
 		{
-			echo '<a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img class="thumb" src="'.$thumburl.'" /></a>';
+			echo '<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="poster" class="thumb" src="'.$thumburl.'" /></a></div>';
 		}
 	}
 	else
@@ -39,13 +39,15 @@ if(isset($thumb))
 }
 ?>
 
-<h1><?php echo "<td onclick=\"return editclick(this)\">".$col2['0']."</td>" ?></h1>
+<div id="thetitle"><h1><?php echo $col2['0'] ?></h1></div>
+<div id="infotable">
 <table border="0">
 	<!--Loops throuch arrays containing info, printing to a table-->
 	<?php
 		for ($i = 1; $i < count($col1); $i++)
 		{
-			echo "<tr><td><p><b>$col1[$i]</b></td><td onclick=\"return editclick(this)\">$col2[$i]</td></tr></p>";
+			echo "<tr><th>$col1[$i]</th><td>$col2[$i]</td></tr></p>";
 		}
 	?>
 </table>
+</div>

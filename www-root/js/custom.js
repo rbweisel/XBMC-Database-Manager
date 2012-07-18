@@ -1,23 +1,56 @@
 var edit='1';
+var tempstring='';
 
-function saveclick(object)
+/********************
+ * Save edited text *
+ ********************/
+$('#editsave').live('click', function()
 {
-	var val = $('#editstring').attr('value');
-	$('#editing').replaceWith('<td onclick=\"return editclick(this)\">'+val+'</td>');
+	var val = $('#editinput').attr('value');
+	$('#editdiv').replaceWith('<div class="editable">'+val+'</div>');
 	edit='1';
 	return false;
-}
-
-function editclick(object)
-{  
+});
+/********************************************
+ * If input field loses focus, restore text *
+*********************************************/
+$('#contentinfo').live('click', function(e)
+{
+	if($(e.target).attr('id') !== 'editdiv' && $(e.target).attr('id') !== 'editinput')
+	{
+    	$('#editdiv').replaceWith('<div class="editable">'+tempstring+'</div>');
+		edit='1';
+    }
+    return false;
+});
+/**********************************************************
+ * Function to fire when an editable object is clicked on *
+ **********************************************************/
+$('div.editable').live('click', function(e)
+{
+	var object = this;
 	if (edit == '1')
 	{
 		edit='0';
-		$(object).replaceWith('<td id="editing"><input id="editstring" value="'+$(object).html()+'"><button id="savebutton" onclick="return saveclick(this)">SAVE</button></td>');
+		tempstring=$(object).html();
+		if ($(object).hasClass('title'))
+		{
+			$(object).replaceWith('<div id="editdiv"><textarea id="editinput" class="title">'+$(object).html()+'</textarea><button id="editsave">SAVE</button></div>');
+		}
+		else
+		{
+			$(object).replaceWith('<div id="editdiv"><textarea id="editinput">'+$(object).html()+'</textarea><button id="editsave">SAVE</button></div>');
+		}
+		$('#editinput').autosize();  
+		$("#editinput").focus();
+	}
+	else
+	{
+		$('#editdiv').replaceWith('<div class="editable">'+tempstring+'</div>');
+		edit='1';
 	}
 	return false;
-}
-
+});
 
 /**********************************************************
  * Function to toggle divs in tv-show list hidden/showing *
@@ -174,7 +207,7 @@ function togglehidden(div_id)
 // Function viewmovie, updates content navigation and content for movie info view --//
 function viewmovie(id, view)														//
 {																					//
-	Shadowbox.init();
+	edit='1';
 	if (view)																		//
 	{																				//
 		$('#contentnav').load("movies/viewcontentnav?id=" + id + "&view=" + view);	//
@@ -295,6 +328,7 @@ function sortmovies()
 // Function viewtv, updates content navigation and content for tv-show/episode info view
 function viewtv(object, view)
 {
+	edit='1';
 	var idshow = object.id;
 	var idepisode = object.title ? object.title : '0';
 	var what = $(object).attr('class');

@@ -362,6 +362,61 @@ a {
 	font-size: 14px;
 	margin:8px 0;
 }
+#contentinfo th {
+	vertical-align: top;
+	text-align: left;
+	width: 130px;
+}
+#contentinfo td {
+	vertical-align: top;
+	text-align: left;
+}
+#thetitle {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	right: 240px;
+}
+#poster {
+	position:absolute;
+	top: 0px;
+	right: 0px;
+}
+#banner {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+#infotable {
+	position:absolute;
+	top: 80px;
+	left: 0px;
+	right: 240px;
+	bottom: 0px;
+}
+
+#editinput {  
+	#width: 100%;  
+	font-family: georgia,sans-serif;
+	#font-size: 16px;  
+	padding: 5px;  
+	background-color: rgb(210,210,210);		/* Fallback */
+	background-color: rgba(0,0,0,0.1);
+	max-height: 250px;
+	outline: none;
+	overflow-x: hidden;
+	overflow-x: auto;
+	resize: none;
+}
+.title {
+	font-family: georgia,sans-serif;
+	font-size: 32px;  
+	width: 100%;
+	height: 32px;
+}
+
 /*********************************
  * Actors (thumbnails and roles) *
  *********************************/
@@ -406,7 +461,9 @@ a {
 	margin-left: 10px;
 }
 .banner {
-	width: 99.5%;
+	max-width: 99.5%;
+	margin-left: auto;
+	margin-right: auto;
 	display: block;
 	margin-top: 10px;
 	border: 1px solid black;
@@ -443,4 +500,3 @@ a[rel~="shadowbox"] {
 	-webkit-border-radius:15px;				/* for Webkit-Browsers */
 	background-clip:padding-box;
 }
-

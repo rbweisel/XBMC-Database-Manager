@@ -13,9 +13,9 @@
 		<!--<script type="text/javascript" src="<?php echo base_url();?>js/jquery-1.7.js"></script>-->
 		<script type="text/javascript" src="<?php echo base_url();?>js/jquery.1.7.min.js"></script>
 		<!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+		<script type="text/javascript" src="<?php echo base_url();?>js/jquery.autosize-min.js"></script>
 
 		<script type="text/javascript" src="<?php echo base_url();?>js/custom.js"></script>
-
 	</head>
 	<body>
 		<div id="wrapper">
