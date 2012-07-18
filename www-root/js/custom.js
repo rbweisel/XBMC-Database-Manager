@@ -1,3 +1,24 @@
+var edit='1';
+
+function saveclick(object)
+{
+	var val = $('#editstring').attr('value');
+	$('#editing').replaceWith('<td onclick=\"return editclick(this)\">'+val+'</td>');
+	edit='1';
+	return false;
+}
+
+function editclick(object)
+{  
+	if (edit == '1')
+	{
+		edit='0';
+		$(object).replaceWith('<td id="editing"><input id="editstring" value="'+$(object).html()+'"><button id="savebutton" onclick="return saveclick(this)">SAVE</button></td>');
+	}
+	return false;
+}
+
+
 /**********************************************************
  * Function to toggle divs in tv-show list hidden/showing *
  **********************************************************/

@@ -36,17 +36,16 @@ if(isset($thumb))
 	{
 		echo '<img class="thumb" src="/img/na.jpg" />';
 	}
-//	echo '<img id="thumb" src="/thumbs/'.substr($thumb,0,1).'/'.$thumb.'.tbn" />';
 }
 ?>
 
-<h1><?php echo $col2['0'] ?></h1>
+<h1><?php echo "<td onclick=\"return editclick(this)\">".$col2['0']."</td>" ?></h1>
 <table border="0">
 	<!--Loops throuch arrays containing info, printing to a table-->
 	<?php
 		for ($i = 1; $i < count($col1); $i++)
 		{
-			echo "<p><b>$col1[$i]</b> $col2[$i]</p>";
+			echo "<tr><td><p><b>$col1[$i]</b></td><td onclick=\"return editclick(this)\">$col2[$i]</td></tr></p>";
 		}
 	?>
 </table>

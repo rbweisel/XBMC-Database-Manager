@@ -256,7 +256,7 @@ a {
 #showlist {
 	width: 100%;
 	border: 1px inset black;
-	background-color: rgb(210,210,210);
+	background-color: rgb(210,210,210);		/* Fallback */
 	background-color: rgba(0,0,0,0.05);
 	text-align: left;
 	overflow: auto;
@@ -272,8 +272,8 @@ a {
 #seasonlist {
 	width: 100%;
 	border: 1px inset black;
-	background-color: rgb(210,210,210);
-	#background-color: rgba(0,0,0,0.05);
+	background-color: rgb(210,210,210);		/* Fallback */
+	background-color: rgba(0,0,0,0.05);
 	text-align: left;
 	overflow: auto;
 	bottom: 25px;
@@ -287,9 +287,8 @@ a {
 }
 #eplist {
 	width: 100%;
-	#border-top:1px solid #999;
-	#border-bottom:1px solid #999;
 	border: 1px inset black;
+	background-color: rgb(210,210,210);		/* Fallback */
 	background-color: rgba(0,0,0,0.1);
 	text-align: left;
 	overflow: auto;
