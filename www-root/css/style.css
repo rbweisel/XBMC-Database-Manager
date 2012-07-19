@@ -355,7 +355,8 @@ a {
 	width: 100%;
 	top: 31px;
 	bottom: 0px;
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	position: absolute;
 }
 #contentinfo p {
@@ -371,7 +372,14 @@ a {
 	vertical-align: top;
 	text-align: left;
 }
-#thetitle {
+/*************************************
+ * Movie and TV-Show inforation page *
+ *************************************/
+#showinfo {
+	left: 0px;
+	right: 0px;
+}
+#movieinfo {
 	position:absolute;
 	top: 0px;
 	left: 0px;
@@ -379,42 +387,52 @@ a {
 }
 #poster {
 	position:absolute;
-	top: 0px;
-	right: 0px;
+	top: 10px;
+	right: 10px;
+	width: 210px;
+	text-align: center;
+}
+#poster img{
+	max-width: 210px;
+	border: 1px solid black;
 }
 #banner {
-	position:absolute;
-	top: 0px;
+	top: 10px;
 	left: 0px;
 	right: 0px;
+	text-align: center;
 }
-
-#infotable {
-	position:absolute;
-	top: 80px;
-	left: 0px;
-	right: 240px;
-	bottom: 0px;
+#banner img{
+	height: 140px;
+	border: 1px solid black;
 }
-
+#title {
+	padding: 3px;
+}
+#infotable td{
+	padding: 3px;
+}
 #editinput {  
-	#width: 100%;  
+	width: 100%;
 	font-family: georgia,sans-serif;
-	#font-size: 16px;  
-	padding: 5px;  
-	background-color: rgb(210,210,210);		/* Fallback */
-	background-color: rgba(0,0,0,0.1);
+	font-size: 16px;
+	margin: -3px;
+	padding: 3px;
+	background-color: rgba(0,0,0,0.1);	/*Darkens the background in supporting browsers*/
+	color: black;
+	border: 1px inset gray;
 	max-height: 250px;
 	outline: none;
 	overflow-x: hidden;
 	overflow-x: auto;
 	resize: none;
 }
-.title {
-	font-family: georgia,sans-serif;
-	font-size: 32px;  
-	width: 100%;
-	height: 32px;
+#editinput.title {
+	font-size: 32px;
+	font-weight: bold;
+}
+#editsave {
+	margin-top: 5px;
 }
 
 /*********************************
@@ -459,14 +477,6 @@ a {
 	margin-top: 30px;
 	margin-right: 10px;
 	margin-left: 10px;
-}
-.banner {
-	max-width: 99.5%;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-	margin-top: 10px;
-	border: 1px solid black;
 }
 .actorthumb {
 	max-width: 160px;

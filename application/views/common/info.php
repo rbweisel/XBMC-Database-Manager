@@ -25,29 +25,42 @@ if(isset($thumb))
 		$imginfo = getimagesize($thumburl);
 		if(($imginfo[0]/$imginfo[1])>2)			//Image is twice as wide as it is high
 		{
-			echo '<div id="banner"><a rel="shadowbox" title="Banner" href="'.$thumburl.'"><img class="banner" src="'.$thumburl.'" /></a></div>';
+			echo '<div id="banner">'."\n\t".'<a rel="shadowbox" title="Banner" href="'.$thumburl.'">'."\n\t\t".'<img src="'.$thumburl.'" />'."\n\t".'</a>'."\n".'</div>'."\n".'<div id="showinfo">';
 		}
 		else
 		{
-			echo '<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="poster" class="thumb" src="'.$thumburl.'" /></a></div>';
+			echo '<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img src="'.$thumburl.'" /></a></div><div id="movieinfo">';
 		}
 	}
 	else
 	{
-		echo '<img class="thumb" src="/img/na.jpg" />';
+		$controller = $this->router->class;
+		if($controller == 'shows')
+		{
+			echo '<div id="banner"><img src="/img/na.jpg" /></div><div id="showinfo">';
+		}
+		if($controller == 'movies')
+		{
+			echo '<div id="poster"><img src="/img/na.jpg" /></div><div id="movieinfo">';
+		}
 	}
 }
 ?>
 
-<div id="thetitle"><h1><?php echo $col2['0'] ?></h1></div>
-<div id="infotable">
-<table border="0">
-	<!--Loops throuch arrays containing info, printing to a table-->
-	<?php
-		for ($i = 1; $i < count($col1); $i++)
-		{
-			echo "<tr><th>$col1[$i]</th><td>$col2[$i]</td></tr></p>";
-		}
-	?>
-</table>
+	<div id="title">
+		<h1><?php echo $col2['0'] ?></h1>
+	</div>
+	<div id="infotable">
+		<table border="0">
+			<tbody>
+			<!--Loops throuch arrays containing info, printing to a table-->
+			<?php
+				for ($i = 1; $i < count($col1); $i++)
+				{
+					echo "\n\t\t\t\t<tr><th>$col1[$i]</th><td>$col2[$i]</td></tr></p>";
+				}
+			?>
+			</tbody>
+		</table>
+	</div>
 </div>

@@ -7,7 +7,14 @@ var tempstring='';
 $('#editsave').live('click', function()
 {
 	var val = $('#editinput').attr('value');
-	$('#editdiv').replaceWith('<div class="editable">'+val+'</div>');
+	if ($('#editinput').hasClass('title'))
+	{
+		$('#editdiv').replaceWith('<div class="editable title">'+val+'</div>');
+	}
+	else
+	{
+		$('#editdiv').replaceWith('<div class="editable">'+val+'</div>');
+	}
 	edit='1';
 	return false;
 });
@@ -18,7 +25,14 @@ $('#contentinfo').live('click', function(e)
 {
 	if($(e.target).attr('id') !== 'editdiv' && $(e.target).attr('id') !== 'editinput')
 	{
-    	$('#editdiv').replaceWith('<div class="editable">'+tempstring+'</div>');
+		if ($('#editinput').hasClass('title'))
+		{
+			$('#editdiv').replaceWith('<div class="editable title">'+tempstring+'</div>');
+		}
+		else
+		{
+			$('#editdiv').replaceWith('<div class="editable">'+tempstring+'</div>');
+		}
 		edit='1';
     }
     return false;
@@ -46,7 +60,14 @@ $('div.editable').live('click', function(e)
 	}
 	else
 	{
-		$('#editdiv').replaceWith('<div class="editable">'+tempstring+'</div>');
+		if ($('#editinput').hasClass('title'))
+		{
+			$('#editdiv').replaceWith('<div class="editable title">'+tempstring+'</div>');
+		}
+		else
+		{
+			$('#editdiv').replaceWith('<div class="editable">'+tempstring+'</div>');
+		}
 		edit='1';
 	}
 	return false;
