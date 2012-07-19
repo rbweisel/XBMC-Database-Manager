@@ -130,12 +130,16 @@
 				$info['col1'] = array_values($info['col1']);
 				$info['col2'] = array_values($info['col2']);
 			}
-			$info['col2']['0'] = '<div class="editable title">'.$info['col2']['0'].'</div>';
-			$info['col2']['8'] = '<div class="editable tagline">'.$info['col2']['8'].'</div>';
-			$info['col2']['9'] = '<div class="editable outline">'.$info['col2']['9'].'</div>';
-			$info['col2']['11'] = '<div class="editable plot">'.$info['col2']['11'].'</div>';
-			$info['col2']['12'] = '<div class="editable watched">'.$info['col2']['12'].'</div>';
-
+			else
+			{
+				$info['col2']['0'] = '<div class="editable title">'.$info['col2']['0'].'</div>';
+				$info['col2']['8'] = '<div class="editable tagline">'.$info['col2']['8'].'</div>';
+				$info['col2']['9'] = '<div class="editable outline">'.$info['col2']['9'].'</div>';
+				$info['col2']['10'] = '<div class="editable plot">'.$info['col2']['10'].'</div>';
+				$info['col2']['11'] = '<div class="editable plot">'.$info['col2']['11'].'</div>';
+				$info['col2']['13'] = '<div class="editable watched">'.$info['col2']['13'].'</div>';
+				$info['col2']['14'] = '<div class="editable watched">'.$info['col2']['14'].'</div>';
+			}
 			return $info;												// Return a array with links to the movies.
 		}
 
