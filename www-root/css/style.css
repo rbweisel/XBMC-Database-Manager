@@ -522,7 +522,6 @@ a[rel~="shadowbox"] {
 	background-image: url('../img/edit.png');
 	background-repeat: no-repeat;
 	background-position: top right;
-	display: block;  /* may not need this, but I've found I do */
 }
 
 
