@@ -17,7 +17,86 @@ $('#editsave').live('click', function()
 	}
 	edit='1';
 	return false;
+	
+	var value = $("#" + object.name).find("#datacol").html();
+	switch(object.name)
+	{
+		case 'Watched':
+			value = (value == 'Yes') ? null : '1';
+			break;
+		case 'Title':
+			var newtitle = prompt("Please enter the new title",value);
+			if(newtitle != value && newtitle != null)
+			{
+				value = newtitle;
+			}
+			else if(newtitle == null ||  newtitle == value)
+			{
+				return false;
+			}
+			break;
+		case 'Path':
+			var newpath = prompt("Please enter the new path",value);
+			if(newpath != value && newpath != null)
+			{
+				value = newpath;
+			}
+			else if(newpath == null ||  newpath == value)
+			{
+				return false;
+			}
+			break;
+		case 'File':
+			var newfile = prompt("Please enter the new filename",value);
+			if(newfile != value && newfile != null)
+			{
+				value = newfile;
+			}
+			else if(newfile == null ||  newfile == value)
+			{
+				return false;
+			}
+			break;
+		case 'Delete':
+			var action = confirm("Are you sure you want to delete this item?");
+			if (action==true)
+			{
+				$.post('/movies/delete',{ id: object.id });
+				location.reload();
+			}
+			else
+			{
+				location.reload();
+			}
+			return false;
+			break;
+		default:
+			return false;
+			break;
+	}
+	$.ajax(
+	{
+		type: 'POST',
+		url:  '/movies/edit',
+		async: false,
+		data: {
+			id: object.id,
+			what: object.name,
+			to: value
+		},
+		success: function(data)
+		{
+			$('#contentnav').load("movies/viewcontentnav?id=" + object.id);
+			$('#contentinfo').load("movies/viewmovie?id=" + object.id);
+		},
+		error: function(data)
+		{
+			alert("Error: " + data);
+		}
+	});
+	return false;
 });
+
 /********************************************
  * If input field loses focus, restore text *
 *********************************************/
@@ -42,18 +121,31 @@ $('#contentinfo').live('click', function(e)
  **********************************************************/
 $('div.editable').live('click', function(e)
 {
-	var object = this;
+	var id = $('#contentinfo span').attr('id');
+
 	if (edit == '1')
 	{
 		edit='0';
-		tempstring=$(object).html();
-		if ($(object).hasClass('title'))
+		tempstring=$(this).html();
+		if ($(this).hasClass('title'))
 		{
-			$(object).replaceWith('<div id="editdiv"><textarea id="editinput" class="title">'+$(object).html()+'</textarea><button id="editsave">SAVE</button></div>');
+			$(this).replaceWith('<div id="editdiv"><textarea id="editinput" class="title">'+$(this).html()+'</textarea><button id="editsave">SAVE</button></div>');
+		}
+		else if ($(this).hasClass('watched'))
+		{
+			alert("Setting cbox");
+			if($(this).html() == 'Yes')
+			{
+				$(this).replaceWith('<div id="editdiv"><input type="checkbox" id="editinput" value="watched" checked><button id="editsave">SAVE</button></div>');
+			}
+			else
+			{
+				$(this).replaceWith('<div id="editdiv"><input type="checkbox" id="editinput" value="watched"><button id="editsave">SAVE</button></div>');
+			}
 		}
 		else
 		{
-			$(object).replaceWith('<div id="editdiv"><textarea id="editinput">'+$(object).html()+'</textarea><button id="editsave">SAVE</button></div>');
+			$(this).replaceWith('<div id="editdiv"><textarea id="editinput">'+$(this).html()+'</textarea><button id="editsave">SAVE</button></div>');
 		}
 		$('#editinput').autosize();  
 		$("#editinput").focus();

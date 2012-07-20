@@ -25,11 +25,11 @@ if(isset($thumb))
 		$imginfo = getimagesize($thumburl);
 		if(($imginfo[0]/$imginfo[1])>2)			//Image is twice as wide as it is high
 		{
-			echo '<div id="banner">'."\n\t".'<a rel="shadowbox" title="Banner" href="'.$thumburl.'">'."\n\t\t".'<img src="'.$thumburl.'" />'."\n\t".'</a>'."\n".'</div>'."\n".'<div id="showinfo">';
+			echo '<div id="banner">'."\n\t".'<a rel="shadowbox" title="Banner" href="'.$thumburl.'">'."\n\t\t".'<img src="'.$thumburl.'" />'."\n\t".'</a>'."\n".'</div>'."\n".'<div id="showinfo">'."\n";
 		}
 		else
 		{
-			echo '<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img src="'.$thumburl.'" /></a></div><div id="movieinfo">';
+			echo '<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img src="'.$thumburl.'" /></a></div><div id="movieinfo">'."\n";
 		}
 	}
 	else
@@ -37,30 +37,31 @@ if(isset($thumb))
 		$controller = $this->router->class;
 		if($controller == 'shows')
 		{
-			echo '<div id="banner"><img src="/img/na.jpg" /></div><div id="showinfo">';
+			echo '<div id="banner"><img src="/img/na.jpg" /></div><div id="showinfo">'."\n";
 		}
 		if($controller == 'movies')
 		{
-			echo '<div id="poster"><img src="/img/na.jpg" /></div><div id="movieinfo">';
+			echo '<div id="poster"><img src="/img/na.jpg" /></div><div id="movieinfo">'."\n";
 		}
 	}
 }
 ?>
-
-	<div id="title">
-		<h1><?php echo $col2['0'] ?></h1>
-	</div>
-	<div id="infotable">
-		<table border="0">
-			<tbody>
-			<!--Loops throuch arrays containing info, printing to a table-->
-			<?php
-				for ($i = 1; $i < count($col1); $i++)
-				{
-					echo "\n\t\t\t\t<tr><th>$col1[$i]</th><td>$col2[$i]</td></tr></p>";
-				}
-			?>
-			</tbody>
-		</table>
-	</div>
+	<span id="<?php echo $id; ?>" class="movie">
+		<div id="title" class="movie <?php echo $id; ?>">
+			<h1><?php echo $col2['0'] ?></h1>
+		</div>
+		<div id="infotable" class="movie <?php echo $id; ?>">
+			<table border="0">
+				<tbody>
+				<!--Loops throuch arrays containing info, printing to a table-->
+				<?php
+					for ($i = 1; $i < count($col1); $i++)
+					{
+					echo "\n\t\t\t\t\t<tr><th>$col1[$i]</th><td>$col2[$i]</td></tr></p>";
+					}
+				?>
+				</tbody>
+			</table>
+		</div>
+	</span>
 </div>
