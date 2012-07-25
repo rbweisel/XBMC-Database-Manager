@@ -1,4 +1,26 @@
 --------------------------------------------
+-= XBMC-Database-Manager 0.21 (2012-07-25) =-
+--------------------------------------------
+
+The following has been changed/fixed/added/removed in this release:
+
+	* Poster picker, change poster images when logged in
+	* TMDB API, creds to adangq and Jonas De Smet who wrote the PHP wrapper
+	* Minor changes
+
+
+--------------------------------------------
+-= XBMC-Database-Manager 0.2 (2012-07-17) =-
+--------------------------------------------
+
+The following has been changed/fixed/added/removed in this release:
+
+	* Style revamped
+	* Inline edit
+	* Forgotten stuff...
+
+
+--------------------------------------------
 -= XBMC-Database-Manager 0.1 (2012-01-27) =-
 --------------------------------------------
 
