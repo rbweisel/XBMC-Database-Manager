@@ -181,6 +181,10 @@
 					fwrite($out, $buffer);
 				}
 			}
+			else
+			{
+				echo "<script>alert('You need to be logged in for this!');</script>";
+			}
 		}
 
 		// Destructor ------------------------------------------------------------------//

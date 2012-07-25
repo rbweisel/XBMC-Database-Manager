@@ -1,8 +1,8 @@
-				<div id="settingslist" class="list">
+				<div id="listheading">
 					<script>
 						$(document).ready(function()
 						{
-							$('#settingslist').load("settings/getlist");
+							$('#listheading').load("settings/getlist");
 						});
 					</script>
 				</div>

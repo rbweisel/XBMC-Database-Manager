@@ -376,20 +376,29 @@ a {
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: absolute;
+	border: 1px solid white;
+}
+#infotable {
+	width: 100%;
+	-ms-word-break: break-all;
+	word-break: break-all;
+	word-break: break-word;
+}
+#infotable td {
+	vertical-align: top;
+	text-align: left;
+	padding: 3px;
+}
+#infotable th {
+	vertical-align: top;
+	text-align: left;
+	width: 130px;
 }
 #contentinfo p {
 	font-size: 14px;
 	margin:8px 0;
 }
-#contentinfo th {
-	vertical-align: top;
-	text-align: left;
-	width: 130px;
-}
-#contentinfo td {
-	vertical-align: top;
-	text-align: left;
-}
+
 /*************************************
  * Movie and TV-Show inforation page *
  *************************************/
@@ -425,9 +434,6 @@ a {
 	border: 1px solid black;
 }
 #title {
-	padding: 3px;
-}
-#infotable td{
 	padding: 3px;
 }
 #editinput {  

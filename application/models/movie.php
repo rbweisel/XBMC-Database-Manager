@@ -141,8 +141,9 @@
 				$info['col2']['13'] = '<div class="editable plot">'.$info['col2']['13'].'</div>';
 				$info['col2']['14'] = '<div class="editable watched">'.$info['col2']['14'].'</div>';
 			}
-			$info['id']=$id;
-			$info['type']='movie';
+			$info['id'] = $id;
+			$info['edit'] = ($this->session->userdata('logged_in')) ? true : false;
+			$info['type'] = 'movie';
 			return $info;												// Return a array with links to the movies.
 		}
 

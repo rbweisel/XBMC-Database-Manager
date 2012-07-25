@@ -10,4 +10,5 @@
 					$('#contentnav').load("settings/getcontentmenu");
 				});
 			</script>
-			<div id="sidebar" class="roundcorners">
+			<div id="background">
+				<div id="sidebar" class="roundcorners">

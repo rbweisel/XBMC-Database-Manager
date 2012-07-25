@@ -43,7 +43,14 @@ if(isset($thumb))
 				break;
 			case 'movie':
 				//echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
-				echo "<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."' /></a></div><div id=\"movieinfo\">\n";
+				if($edit==true)
+				{
+					echo "<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."' /></a></div><div id=\"movieinfo\">\n";
+				}
+				else
+				{
+					echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
+				}
 				break;
 			case 'show':
 				echo "\t\t\t\t\t".'<div id="banner">'."\n\t".'<a rel="shadowbox" title="Banner" href="'.$thumburl.'">'."\n\t\t".'<img src="'.$thumburl.'" />'."\n\t".'</a>'."\n".'</div>'."\n\t\t\t\t\t".'<div id="showinfo">'."\n";
