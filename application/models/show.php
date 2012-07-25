@@ -104,6 +104,8 @@
 				array_push($info['col2'], $row);										// Put the values in info, col2, standard indexed 0-n
 			}																			//
 			$info['thumb'] = $this->configdb->hashit($info['col2'][6]);
+			$info['id'] = $id;
+			$info['type'] = 'show';
 			$info['col2']['4'] = number_format($info['col2']['4'], 1);					// Set rating to 1 decimal
 			return $info;																// Return the info array
 		}																				//
@@ -151,6 +153,8 @@
 			if($id == '0' || $id == '')													// If episode id is 0
 			{																			// Means no episode is chosen yet
 				array_push($info['col2'], 'Select episode');							// Print this text
+				$info['id'] = $id;
+				$info['type'] = 'episode';
 				return $info;															// exit function
 			}																			//
 
@@ -184,6 +188,8 @@
 				$info['col1'] = array_values($info['col1']);
 				$info['col2'] = array_values($info['col2']);
 			}
+			$info['id'] = $id;
+			$info['type'] = 'episode';
 
 			return $info;																// Return with the info array
 		}																				//
@@ -226,7 +232,7 @@
 																						//
 			foreach ($query->result() as $row)											// Loop through the results
 			{																			// Create a TV-show link with the values, put in array
-				array_push($link,'<li id="'.$row->idShow.'" onclick="return viewtv(this, \'\');" class="tvshowlink"">'.$row->c00.'</li>');
+				array_push($link,"\n\t\t\t\t\t\t".'<li id="'.$row->idShow.'" onclick="return viewtv(this, \'\');" class="tvshowlink">'.$row->c00.'</li>');
 			}																			//
 			return $link;																// Return with the link array
 		}																				//
@@ -267,7 +273,7 @@
 					$queryepisodes = $this->db->get('episodeview');						//
 					foreach ($queryepisodes->result() as $row2)							//
 					{																	//
-						array_push($link,'<li id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" class="eplink" title="'.$row2->idEpisode.'"><table class="listtable"><tr><th>'.$row2->c12.'x'.$row2->c13.'</th><td>'.$row2->c00.'</td></tr></table></li>');
+						array_push($link,"\n\t\t\t\t\t\t".'<li id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" class="eplink" title="'.$row2->idEpisode.'"><table class="listtable"><tr><th>'.$row2->c12.'x'.$row2->c13.'</th><td>'.$row2->c00.'</td></tr></table></li>');
 					}																	//
 				}																		//
 			}																			//
@@ -288,7 +294,7 @@
 				$queryepisodes = $this->db->get('episodeview');							//
 				foreach ($queryepisodes->result() as $row2)								//
 				{																		//
-					array_push($link,'<li id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" class="eplink" title="'.$row2->idEpisode.'"><table class="listtable"><tr><th>'.$row2->c12.'x'.$row2->c13.'</th><td>'.$row2->c00.'</td></tr></table></li>');
+					array_push($link,"\n\t\t\t\t\t\t".'<li id="'.$idshow.'" onclick="return viewtv(this, \'epinfo\');" class="eplink" title="'.$row2->idEpisode.'"><table class="listtable"><tr><th>'.$row2->c12.'x'.$row2->c13.'</th><td>'.$row2->c00.'</td></tr></table></li>');
 				}																		//
 			}																			//
 			return $link;																//
@@ -300,7 +306,7 @@
 		{																				//
 			$link = array();															// seasons is empty array
 			//array_push($link,'<a href="" id="'.$idshow.'" onclick="return sortepisodes(this);" title="season" name="all">All seasons</a>');	// Set first option to all seasons
-			array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="all">All seasons</li>');
+			array_push($link,"\n\t\t\t\t\t\t".'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="all">All seasons</li>');
 			$this->db->select('c12');													// Prepare select statement (season column)
 			$this->db->where('idShow', $idshow);										// Prepare where statement (idshow must match)
 			$this->db->group_by('c12');													// Only get one row for each season
@@ -309,11 +315,11 @@
 			{																			// Put each returned row into the seasons array as an option
 				if ($row->c12 == '0')
 				{
-					array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'">Specials</li>');
+					array_push($link,"\n\t\t\t\t\t\t".'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'">Specials</li>');
 				}
 				else
 				{
-					array_push($link,'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'">Season '.$row->c12.'</li>');
+					array_push($link,"\n\t\t\t\t\t\t".'<li id="'.$idshow.'" onclick="return sortepisodes(this);" class="season" title="'.$row->c12.'">Season '.$row->c12.'</li>');
 				}
 			}																			//
 			return $link;															// Return the seasons array

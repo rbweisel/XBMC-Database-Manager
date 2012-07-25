@@ -144,6 +144,45 @@
 		}																				//
 		// End function viewcontentnav() -----------------------------------------------//
 
+		public function getposters()
+		{
+			$imdb_id=$this->input->get('imdb_id');
+			$this->load->library('TMDb');											// Load the database config class
+			$data = array();
+			$data['base'] = $this->tmdb->getImageURL();
+			$data['urls'] = $this->tmdb->moviePoster($imdb_id);
+			$data['hash'] = $this->movie->getmoviehash($this->input->get('id'));		//
+			$data['id'] = $this->input->get('id');
+			//echo "Images:<br>";
+			//echo "<pre>";print_r($pelinfo);echo"</pre>";
+			//echo "<img src=\"".$this->tmdb->getImageURL().$pelinfo['0']['file_path']."\">";
+			//$buscar = $this->tmdb->searchMovie('tt0080487','cl');
+			//echo"<pre>";print_r($buscar);echo"</pre>";
+			//echo "Fetching poster urls<br>";
+			//$data['urls'] = $this->tmdb->moviePoster('tt0080487');
+			//echo "Posters:<br>";
+			//print_r($data);
+			$this->load->view('common/posters.php', $data);							// Load the content navigation menu
+		}
+		
+		public function saveposter()
+		{
+			$url=$this->input->get('purl');
+			$file=$this->input->get('pfile');
+			$folder=$_SERVER['DOCUMENT_ROOT'].'/thumbs/'.substr($file,0,1).'/';
+			if($this->session->userdata('logged_in'))							// And a user is logged in
+			{
+				$in = fopen($url, 'r');
+				$out = fopen($folder.$file, 'w');
+
+				while (!feof($in))
+				{
+					$buffer = fread($in, 2048);
+					fwrite($out, $buffer);
+				}
+			}
+		}
+
 		// Destructor ------------------------------------------------------------------//
 		function __destruct()															//
 		{																				//

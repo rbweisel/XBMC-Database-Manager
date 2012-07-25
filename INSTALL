@@ -12,8 +12,6 @@ To get this up and running without config tweaking do as follows:
 	    ServerAlias <alias here>
 	    DocumentRoot /path/to/the/folder/www-root
 
-	    Alias /thumbs /path/to/folder/containing/thumbnails
-
 	    <Directory /path/to/the/folder/www-root>
 	        Options Indexes FollowSymLinks
 	        AllowOverride All
@@ -27,3 +25,5 @@ To get this up and running without config tweaking do as follows:
 5: 'a2enmod php5' and 'a2enmod rewrite'
 
 6: Restart apache
+
+7: symlink/link/copy you Thumbnails folder to www-root/thumbs folder (contents of Thumbnails folder should be directly under www-root/thumbs/)

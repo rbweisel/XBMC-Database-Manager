@@ -152,7 +152,7 @@
 			$this->load->view('common/contentnav.php', $data);							// Load the content navigation menu
 		}																				//
 		// End function viewcontentnav() -----------------------------------------------//
-
+		
 		// Destructor ------------------------------------------------------------------//
 		function __destruct()															//
 		{																				//

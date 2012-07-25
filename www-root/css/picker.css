@@ -1,0 +1,56 @@
+body {
+	overflow: hidden;
+}
+#posterpicker {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+#current {
+	position: absolute;
+	top: 10px;
+	left: 0px;
+	right: 0px;
+	bottom: 250px;
+	text-align: center;
+}
+#current img {
+	height: 100%;
+	border: 1px solid green;
+}
+#picker {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	height: 230px;
+	bottom: 0px;
+	overflow-y: hidden;
+	overflow-x: show;
+ }
+ #posters {
+	position:absolute;
+	left:5px;
+	bottom: 5px;
+	top: 5px;
+	margin-right: -999em;
+	padding-left: 20px;
+	padding-right: 20px;
+ }
+ 
+#baseurl {
+	display: none
+}
+.thumbnail {
+	height: 100%;
+	float: left;
+}
+.thumbnail img{
+	margin-right: 10px;
+	max-height: 200px;
+	border: 1px solid white;
+}
+.thumbnail img:hover{
+	cursor:hand
+}

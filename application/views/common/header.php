@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="<?php echo base_url();?>js/jquery.autosize-min.js"></script>
 
 		<script type="text/javascript" src="<?php echo base_url();?>js/custom.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>js/edit.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">

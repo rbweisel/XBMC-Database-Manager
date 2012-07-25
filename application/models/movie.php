@@ -113,7 +113,8 @@
 			unset($info['col2'][8]);				// Removes duplicate of votes entry
 			$info['col2'] = array_values($info['col2']);		// Re-index thee array
 
-			// Format the IMDB link:
+			// Format the IMDB link but save imdb id:
+			$info['imdb_id'] = $info['col2']['12'];
 			$info['col2']['12'] = "<a href=\"http://www.imdb.com/title/" . $info['col2']['12'] . "\">IMDB</a>";
 			$info['col2']['14'] = $info['col2']['14'] ? "Yes" : "No";
 

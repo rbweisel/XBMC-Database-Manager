@@ -20,7 +20,7 @@
 				{
 					foreach ($menulist as $link)
 					{
-						echo $link;
+						echo "\t".$link."\n\t\t\t\t";
 					}
 				}
 				else
@@ -28,4 +28,3 @@
 					echo $menulist;
 				}
 				?>
-
