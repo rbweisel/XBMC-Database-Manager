@@ -1,5 +1,5 @@
 --------------------------------------------
--= XBMC-Database-Manager 0.21 (2012-07-27) =-
+-= XBMC-Database-Manager 0.21 (2012-07-25) =-
 --------------------------------------------
 
 The following has been changed/fixed/added/removed in this release:
