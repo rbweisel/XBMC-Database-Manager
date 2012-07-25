@@ -14,7 +14,7 @@ $('.psave').live('click', function() {
 	var id=$(this).attr('id');
 	var fileurl=$('#poster').attr('src');
 	var baseurl=$('#baseurl').html();
-
+	
 	if(fileurl==filename)
 	{
 		alert("Nothing to save!");
@@ -23,7 +23,7 @@ $('.psave').live('click', function() {
 	}
 	else
 	{
-		$(window).load(baseurl + "movies/saveposter?purl="+fileurl+"&pfile="+filename, function()
+		$('#baseurl').load(baseurl + "movies/saveposter?purl="+fileurl+"&pfile="+filename, function()
 		{
 			// Reloads content info when poster have changed
 			$('#contentinfo', window.parent.document).load(baseurl+"movies/viewmovie?id="+id, function()

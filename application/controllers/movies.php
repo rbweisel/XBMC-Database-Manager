@@ -174,7 +174,6 @@
 			{
 				$in = fopen($url, 'r');
 				$out = fopen($folder.$file, 'w');
-
 				while (!feof($in))
 				{
 					$buffer = fread($in, 2048);
