@@ -1,4 +1,12 @@
 --------------------------------------------
+-= XBMC-Database-Manager 0.22 (2012-07-26) =-
+--------------------------------------------
+
+The following has been changed/fixed/added/removed in this release:
+
+	* Simple installer/setup in /install web subfolder
+
+--------------------------------------------
 -= XBMC-Database-Manager 0.21 (2012-07-25) =-
 --------------------------------------------
 
