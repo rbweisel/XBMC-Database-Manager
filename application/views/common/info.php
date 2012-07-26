@@ -2,6 +2,7 @@
 <script type="text/javascript">
 	Shadowbox.init();
 </script><?php
+
 if(isset($thumb))
 {
 	$thumb_found = false;
@@ -36,6 +37,7 @@ if(isset($thumb))
 	}
 	if ( $thumb_found )
 	{
+		$rand = rand(1000, 9999);
 		switch($type)
 		{
 			case 'episode':
@@ -45,11 +47,11 @@ if(isset($thumb))
 				//echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
 				if($edit==true)
 				{
-					echo "<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."' /></a></div><div id=\"movieinfo\">\n";
+					echo "<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
 				}
 				else
 				{
-					echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
+					echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'?'.$rand.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
 				}
 				break;
 			case 'show':
