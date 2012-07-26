@@ -1,15 +1,27 @@
 <?php
+ob_start();
+$buffer = str_repeat(" ", 4096);
+$buffer .= "\r\n<span></span>\r\n";
+	echo $buffer."<!doctype html>\n<html>\n\t<head>\n\t\t";
+	echo "<link rel='stylesheet' href='install.css' type='text/css' media='screen, projection'/>\n";
+	echo "\t</head>\n\t<body>\n";
+	echo "\t\t<div id='validation'>\n";
+	ob_flush();
+	flush();
 
 	function error($msg)
 	{
-		die("<div style='font-family: helvetica; border: 1px solid; padding: 10px; color: #D8000C; background: #FFBABA;'><strong>An Error Occurred:</strong><br />{$msg}</div>");
+		echo "<span class='fail'>FAIL!</span>";
+		die("<div class='error'<strong>An Error Occurred:</strong><br />{$msg}</div>");
 	}
 
 	// Validate posted data
+	echo $buffer."\t\t\t<br/>Validating data... ";
+	ob_flush();flush();
 	$error = false;
 	foreach($_POST as $key => $item)
 	{
-		if(trim($item) == "" && $key != 'prefix')
+		if(trim($item) == "" && $key != 'prefix' && $key != 'dbpass')
 		{
 			error("Fields with a * are required, please ensure they are all entered.");
 			break;
@@ -19,111 +31,83 @@
 	{
 		error("The passwords does not match.");
 	}
+	echo $buffer."<span class='success'>OK!</span>\n";
 
-	//Try to connect to the database
+	//Test the XBMC database connection:
 	$driver=$_POST['dbdriver'];
-	echo "Summary:<br/><p>Database driver: $driver</p>";
 	$dbhost = $_POST['dbhost'];
 	$dbname = $_POST['dbname'];
 	$dbuser = $_POST['dbuser'];
 	$dbpass = $_POST['dbpass'];
+	$prefix = $_POST['prefix'];
+	echo "\t\t\t<br/>Trying to connect to the '$driver' database... ";
+	ob_flush();flush();
 	try
 	{
-		$connection = new PDO($driver.":host=".$dbhost.";dbname=".$dbname, $dbuser, $dbpass);
-	    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$xdb = new PDO($driver.":host=".$dbhost.";dbname=".$dbname, $dbuser, $dbpass);
+	    $xdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 	catch(PDOException $e)
 	{
-		$connection = NULL;
+		$xdb = NULL;
 		error($e->getMessage());
 	}
-	/*switch($driver)
-	{
-		case 'mysql':
-			try
-			{
-				$connection = new PDO("mysql:host=".$dbhost.";dbname=".$dbname, $dbuser, $dbpass);
-			    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			}
-			catch(PDOException $e)
-			{
-				$connection = NULL;
-				error($e->getMessage());
-			}
-			break;
-		case 'mysqli':
-			try
-			{
-				$connection = new PDO("mysqli:host=".$dbhost.";dbname=".$dbname, $dbuser, $dbpass);
-			    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			}
-			catch(PDOException $e)
-			{
-				$connection = NULL;
-				error($e->getMessage());
-			}
-			break;
-		case 'postgre':
-			break;
-		case 'mssql':
-			break;
-		default:
-			error("Unknown database driver: $driver.");
-			break;
-	}*/
+	echo $buffer."<span class='success'>OK!</span>\n";
 	
-/*	$connect = mysql_connect($_POST['sql-host'], $_POST['sql-username'], $_POST['sql-password']);
-	if(!$connect)
+	//Test the local settings database:
+	echo "\t\t\t<br/>Checking for local settings database... ";
+	ob_flush();flush();
+	$dbfile="../../data/xbmcdm.db";
+	if(file_exists($dbfile))
 	{
-		error("The SQL host, username and password combination failed. Please try again");
+		echo $buffer."\n\t\t\t<br/>&nbsp&nbspLocal settings database already exist, creating backup... ";
+		ob_flush();flush();
+		for($i = 0; $i <= 99; $i++)
+		{
+			if(!file_exists($dbfile.".$i"))
+			{
+				if (copy($dbfile,$dbfile.".$i"))
+				{
+					unlink($dbfile);
+					echo $buffer."<span class='success'>OK!</span>\n\t\t\t<br/>&nbsp&nbspOld database saved as: $dbfile.$i\n";
+					break;
+				}
+				else
+				{
+					error("Unable to create backup of the old settings database, check file permissions");
+				}
+			}
+			else if($i == 99)
+			{
+				error("100 backups already created, please remove old backups before trying again");
+			}
+		}
 	}
-
-	$database = mysql_select_db($_POST['sql-database'], $connect);
-	if(!$database)
+	else
 	{
-		error("Unable to connect to database {$_POST['sql-database']}, please check it exists & try again.");
+		echo $buffer."None found\n";flush();
 	}
+	echo "\t\t\t<br/>Creating new settings database... ";
+	ob_flush();flush();
+	try
+	{
+		$cdb = new PDO('sqlite:../../data/xbmcdm.db');
+	    $cdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$cdb->exec("CREATE TABLE users (id INTEGER PRIMARY KEY, username VARCHAR, password VARCHAR)");
+		$cdb->exec("INSERT INTO users (username, password) VALUES ('".$_POST['dbpass']."', '".MD5($_POST['pass1'])."')");
+		$cdb->exec("CREATE TABLE dbconnection (hostname TEXT, username TEXT, password TEXT, database TEXT, dbdriver TEXT, dbprefix TEXT)");
+		$cdb->exec("INSERT INTO dbconnection (hostname, username, password, database, dbdriver, dbprefix) VALUES ('$dbhost','$dbuser','$dbpass','$dbname','$driver','$prefix')");
+	}
+	catch(PDOException $e)
+	{
+		$xdb = NULL;
+		error($e->getMessage());
+	}
+	echo "<span class='success'>OK!</span>\n";
 
-
-$sql = <<<SQL
-CREATE TABLE `users` (
-    `user_id` int(11) auto_increment,
-    `username` varchar(30), 
-    `display_name` varchar(50),
-    `password` varchar (40),
-    `admin` int(1),
-    PRIMARY KEY (`user_id`)
-);
-CREATE TABLE `settings` (
-    `setting_id` int(11) auto_increment,
-    `setting_name` varchar(30), 
-    `setting_value` varchar(100)
-    PRIMARY KEY (`setting_id`)
-);
-SQL;
-
-$sql = mysql_query($sql, $connect);
-if(!$sql)
-    error("Creating tables failed: " . mysql_error());
-
-$sql = "INSERT INTO `users` (`username`, `display_name`, `password`, `admin`)\n" . 
-    "VALUES ('{$_POST['admin-user']}', '{$_POST['admin-name']}', '" . sha1($_POST['admin-pass1']) . "', '1')";
-
-$sql = mysql_query($sql, $connect);
-if(!$sql)
-    error("Unable to insert admin user details into user database: " . mysql_error());
-
-$sql = "INSERT INTO `settings` (`setting_name`, `setting_value`)\n" . 
-    "VALUES ('sitename', '{$_POST['settings-sitename']}'), \n" . 
-    "('sitetagline', '{$_POST['settings-sitetagline']}'), \n" .
-    "('siteemail', '{$_POST['settings-siteemail']}')";
-
-$sql = mysql_query($sql, $connect);
-if(!$sql){
-    mysql_query("DELETE FROM `users` WHERE `user_id` = '1'"); 
-    error("Unable to insert site settings into user database: " . mysql_error());
-}
-
-echo "Wooo! Your site is successfully installed! You can now go and play with it!";
-*/
+	echo "\t\t\t<br/>Done!\n";
+	echo "\t\t</div>\n";
+	echo "\t</body>\n";
+	echo "</html>";
+ob_end_flush();
 ?>

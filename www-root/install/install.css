@@ -1,0 +1,45 @@
+html body {
+	background-color: black;
+	color: white;
+}
+
+#settings {
+	text-align: center;
+	padding: 5px;
+}
+#settings table {
+	margin-left: auto;
+	margin-right: auto;
+}
+#settings td{
+	padding-right: 10px;
+	width: 200px;
+}
+#settings input{
+	width: 200px;
+}
+#settings select{
+	width: 200px;
+}
+.required{
+	background-image: url('asterisk.gif');
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+#validation{
+	padding: 5px;
+}
+.error{
+	margin: 10px auto;
+	font-family: helvetica;
+	border: 1px solid;
+	padding: 10px;
+	color: #D8000C;
+	#background: #FFBABA;
+}
+.success{
+	color: green;
+}
+.fail{
+	color: red;
+}

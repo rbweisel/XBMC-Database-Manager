@@ -4,7 +4,7 @@
 		function login($username, $password)
 		{
 			// Build query
-			$sql = 'SELECT username FROM members WHERE username = \'' . $username . '\' AND password = \'' . MD5($password) . '\'';
+			$sql = 'SELECT username FROM users WHERE username = \'' . $username . '\' AND password = \'' . MD5($password) . '\'';
 			$numrows = NULL;
 			$dbuser = NULL;
 			$result = $this->configdb->query($sql);
