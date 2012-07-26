@@ -50,9 +50,20 @@ $buffer .= "\r\n<span></span>\r\n";
 	catch(PDOException $e)
 	{
 		$xdb = NULL;
-		error($e->getMessage());
+		$dberror = $e->getMessage();
+		if($dberror == 'could not find driver')
+		{
+			echo $buffer."<span class='fail'>No PDO driver, can't verify connection</span>\n";
+		}
+		else
+		{
+			error($dberror);
+		}
 	}
-	echo $buffer."<span class='success'>OK!</span>\n";
+	if ($xdb != NULL)
+	{
+		echo $buffer."<span class='success'>OK!</span>\n";
+	}
 	
 	//Test the local settings database:
 	echo "\t\t\t<br/>Checking for local settings database... ";
@@ -105,7 +116,19 @@ $buffer .= "\r\n<span></span>\r\n";
 	}
 	echo "<span class='success'>OK!</span>\n";
 
+	$pageURL = 'http';
+	if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+	$pageURL .= "://";
+	if ($_SERVER["SERVER_PORT"] != "80")
+	{
+		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"]."/";
+	}
+	else
+	{
+		$pageURL .= $_SERVER["SERVER_NAME"]."/";
+	}
 	echo "\t\t\t<br/>Done!\n";
+	echo "\t\t\t<br/><a href='$pageURL'><button>HOME</button></a>";
 	echo "\t\t</div>\n";
 	echo "\t</body>\n";
 	echo "</html>";

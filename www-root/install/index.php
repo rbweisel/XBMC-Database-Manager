@@ -18,12 +18,12 @@
 				<tr><th>Database</th><td class="required"><input name="dbname" type="text"></td></tr>
 				<tr><th>Database driver</th><td class="required">
 					<select name="dbdriver">
-						<?php
-						foreach(PDO::getAvailableDrivers() as $driver)
-						{
-							echo "<option value='$driver'>$driver</option>";
-						}
-						?>		
+						<option value='mysql'>mysql</option>
+						<option value='mssql'>mssql</option>
+						<option value='postgre'>postgre</option>
+						<option value='sqlite'>sqlsrv</option>
+						<option value='odbc'>odbc</option>
+						<option value='cubrid'>cubrid</option>
 					</select>
 				</td></tr>
 				<tr><th>Database prefix</td><td><input name="prefix" type="text"></td></tr>
