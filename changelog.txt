@@ -1,44 +1,29 @@
---------------------------------------------
--= XBMC-Database-Manager 0.22 (2012-07-26) =-
---------------------------------------------
+2012-07-30
+* Redirect to install/setup page when config db is missing
 
-The following has been changed/fixed/added/removed in this release:
+2012-07-26
+* Version 0.22
+* Simple installer/setup in /install web subfolder
 
-	* Simple installer/setup in /install web subfolder
+2012-07-25
+* Version 0.21
+* Poster picker, change poster images when logged in
+* TMDB API, creds to adangq and Jonas De Smet who wrote the PHP wrapper
+* Minor changes
 
---------------------------------------------
--= XBMC-Database-Manager 0.21 (2012-07-25) =-
---------------------------------------------
+2012-07-17
+* Version 0.2
+* Style revamped
+* Inline edit
+* Forgotten stuff...
 
-The following has been changed/fixed/added/removed in this release:
-
-	* Poster picker, change poster images when logged in
-	* TMDB API, creds to adangq and Jonas De Smet who wrote the PHP wrapper
-	* Minor changes
-
-
---------------------------------------------
--= XBMC-Database-Manager 0.2 (2012-07-17) =-
---------------------------------------------
-
-The following has been changed/fixed/added/removed in this release:
-
-	* Style revamped
-	* Inline edit
-	* Forgotten stuff...
-
-
---------------------------------------------
--= XBMC-Database-Manager 0.1 (2012-01-27) =-
---------------------------------------------
-
-The following has been changed/fixed/added/removed in this release:
-
-	* Images (Web server needs access to thumbnails directory, see vhost example)
-	* Cast info
-	* Link to settings page disabled
-	* Settings page not working correctly
-	* Style changes
-	* Image overlay window when clicking on thumbnails
-	* Application works without internet connection
-	* Forgotten stuff...
+2012-01-27
+* Version 0.1
+* Images (Web server needs access to thumbnails directory, see vhost example)
+* Cast info
+* Link to settings page disabled
+* Settings page not working correctly
+* Style changes
+* Image overlay window when clicking on thumbnails
+* Application works without internet connection
+* Forgotten stuff...
