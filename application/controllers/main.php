@@ -6,6 +6,10 @@
 	{
 		public function index()
 		{
+			if (!file_exists('../data/xbmcdm.db'))
+			{
+				redirect(base_url().'install','refresh');
+			}
 			$this->load->helper(array('form', 'url'));				// Load the url helper
 			$data['title'] = 'Main';								// Set page title
 			$this->load->view('common/header', $data);						// Load page header

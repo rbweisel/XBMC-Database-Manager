@@ -5,14 +5,23 @@
 		
 		public function __construct()
 		{
-			try
+			if (file_exists('../data/xbmcdm.db'))
 			{
-				$this->connection = new PDO('sqlite:../data/xbmcdm.db');
+				try
+				{
+					$this->connection = new PDO('sqlite:../data/xbmcdm.db');
+				}
+				catch(PDOException $e)
+				{
+					$this->connection = NULL;
+					echo $e->getMessage();
+					redirect('main');
+				}
 			}
-			catch(PDOException $e)
+			else
 			{
-				$this->connection = NULL;
-				echo $e->getMessage();
+				echo "<script>alert('Configuration missing!');</script>";
+				redirect(base_url().'install','refresh');
 			}
 		}
 		
