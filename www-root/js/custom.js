@@ -17,9 +17,6 @@ function tvtoggle(div_id)
 				$('#sortheading').replaceWith('<a href="" onclick="return tvtoggle(\'sortcontent\');" id="sortheading" class="header">^ Sort options ^</a>');
 				$('#sort').animate({height:'140px'}, 0);
 				$('#list').animate({top:'140px'}, 0);
-				$('#seasonlistheading').animate({top:'25px'}, 0);
-				$('#eplistheading').animate({top:'50px'}, 0); 
-				$('#eplist').animate({top:'75px'}, 0); 
 			}
 			break;
 		case 'showlist':

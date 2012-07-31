@@ -2,6 +2,8 @@
 <script type="text/javascript">
 	Shadowbox.init();
 </script><?php
+//Random number to bypass browser image caching
+$rand = rand(1000, 9999);
 
 if(isset($thumb))
 {
@@ -37,17 +39,15 @@ if(isset($thumb))
 	}
 	if ( $thumb_found )
 	{
-		$rand = rand(1000, 9999);
 		switch($type)
 		{
 			case 'episode':
 				echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img src="'.$thumburl.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
 				break;
 			case 'movie':
-				//echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
 				if($edit==true)
 				{
-					echo "<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
+					echo "\t\t\t\t\t<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
 				}
 				else
 				{
@@ -67,7 +67,14 @@ if(isset($thumb))
 				echo "\t\t\t\t\t".'<div id="poster"><img src="/img/na.jpg" /></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
 				break;
 			case 'movie':
-				echo "\t\t\t\t\t".'<div id="poster"><img src="/img/na.jpg" /></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
+				if($edit==true)
+				{
+					echo "\t\t\t\t\t<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='/img/na.jpg' /></a></div><div id=\"movieinfo\">\n";
+				}
+				else
+				{
+					echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'?'.$rand.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
+				}
 				break;
 			case 'show':
 				echo "\t\t\t\t\t".'<div id="poster"><img src="/img/na.jpg" /></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";

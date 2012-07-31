@@ -1,4 +1,6 @@
 2012-07-31
+* It is now possible to change/add posters for movies without
+* Fixed style glitch when toggling sort options for TV-Shows
 * Fixed some editable items
 
 2012-07-30

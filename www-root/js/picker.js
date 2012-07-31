@@ -14,7 +14,7 @@ $('.psave').live('click', function() {
 	var id=$(this).attr('id');
 	var fileurl=$('#poster').attr('src');
 	var baseurl=$('#baseurl').html();
-	
+
 	if(fileurl==filename)
 	{
 		alert("Nothing to save!");
