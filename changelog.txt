@@ -1,3 +1,6 @@
+2012-07-31
+* Fixed some editable items
+
 2012-07-30
 * Redirect to install/setup page when config db is missing
 

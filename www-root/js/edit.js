@@ -3,6 +3,22 @@
 var edit='1';
 var tempstring='';
 
+/***********************
+ * Save watched status *
+ ***********************/
+$('#savewatched').live('click', function()
+{
+	var val = $('#editcbox').attr('checked');
+	if (val == 'checked')
+	{
+		$('#editdiv').replaceWith('<div class="editable watched">Yes</div>');
+	}
+	else
+	{
+		$('#editdiv').replaceWith('<div class="editable watched">No</div>');
+	}
+});
+
 /********************
  * Save edited text *
  ********************/
@@ -110,11 +126,16 @@ $('#contentinfo').live('click', function(e)
 		{
 			$('#editdiv').replaceWith('<div class="editable title">'+tempstring+'</div>');
 		}
+		if ($('#editcbox').length != 0)
+		{
+			$('#editdiv').replaceWith('<div class="editable watched">'+tempstring+'</div>');
+		}
 		else
 		{
 			$('#editdiv').replaceWith('<div class="editable">'+tempstring+'</div>');
 		}
 		edit='1';
+
     }
     if($(e.target).attr('id') == 'editcbox')
     {
@@ -141,11 +162,11 @@ $('div.editable').live('click', function(e)
 		{
 			if($(this).html() == 'Yes')
 			{
-				$(this).replaceWith('<div id="editdiv"><input type="checkbox" id="editcbox" value="watched" checked><button id="editsave">SAVE</button></div>');
+				$(this).replaceWith('<div id="editdiv"><input type="checkbox" id="editcbox" value="watched" checked><button id="savewatched">SAVE</button></div>');
 			}
 			else
 			{
-				$(this).replaceWith('<div id="editdiv"><input type="checkbox" id="editcbox" value="watched"><button id="editsave">SAVE</button></div>');
+				$(this).replaceWith('<div id="editdiv"><input type="checkbox" id="editcbox" value="watched"><button id="savewatched">SAVE</button></div>');
 			}
 		}
 		else
@@ -160,6 +181,10 @@ $('div.editable').live('click', function(e)
 		if ($('#editinput').hasClass('title'))
 		{
 			$('#editdiv').replaceWith('<div class="editable title">'+tempstring+'</div>');
+		}
+		if ($('#editcbox').length != 0)
+		{
+			$('#editdiv').replaceWith('<div class="editable watched">'+tempstring+'</div>');
 		}
 		else
 		{
