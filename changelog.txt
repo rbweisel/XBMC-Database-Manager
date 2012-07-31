@@ -1,4 +1,5 @@
 2012-07-31
+* Message displaying when no posters found (No TMDb connection?)
 * It is now possible to change/add posters for movies without
 * Fixed style glitch when toggling sort options for TV-Shows
 * Fixed some editable items
