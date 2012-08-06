@@ -189,7 +189,7 @@
 		// Destructor ------------------------------------------------------------------//
 		function __destruct()															//
 		{																				//
-			$this->db->close;															// Close the db connection
+			$this->db->close();															// Close the db connection
 		}																				//
 		// End of __destruct() ---------------------------------------------------------//
 	}
