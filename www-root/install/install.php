@@ -103,7 +103,7 @@ $buffer .= "\r\n<span></span>\r\n";
 	try
 	{
 		$cdb = new PDO('sqlite:../../data/xbmcdm.db');
-	    $cdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$cdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$cdb->exec("CREATE TABLE users (id INTEGER PRIMARY KEY, username VARCHAR, password VARCHAR)");
 		$cdb->exec("INSERT INTO users (username, password) VALUES ('".$_POST['dbpass']."', '".MD5($_POST['pass1'])."')");
 		$cdb->exec("CREATE TABLE dbconnection (hostname TEXT, username TEXT, password TEXT, database TEXT, dbdriver TEXT, dbprefix TEXT)");
@@ -112,7 +112,15 @@ $buffer .= "\r\n<span></span>\r\n";
 	catch(PDOException $e)
 	{
 		$xdb = NULL;
-		error($e->getMessage());
+		$msg = $e->getMessage();
+		if ($msg == 'could not find driver')
+		{
+			error("PDO sqlite driver not installed! Try installing php5-sqlite.");
+		}
+		else
+		{
+			error($e->getMessage());
+		}
 	}
 	echo "<span class='success'>OK!</span>\n";
 

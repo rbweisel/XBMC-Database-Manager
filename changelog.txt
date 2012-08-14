@@ -1,3 +1,7 @@
+2012-08-14
+* Thumbnail hash fix for 64-bit systems from wiki.xbmc.org (thanks to fugspit on forum.xbmc.org)
+* Minor changes to install instructions
+
 2012-07-31
 * Message displaying when no posters found (No TMDb connection?)
 * It is now possible to change/add posters for movies without

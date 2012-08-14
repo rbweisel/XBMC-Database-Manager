@@ -13,30 +13,7 @@ if(isset($thumb))
 	{
 		$thumb_found = true;
 	}
-	else
-	{
-		$thumburl = base_url().'thumbs/Video/'.substr($thumb,0,1).'/'.$thumb.'.tbn';
-		if ( @file_get_contents($thumburl,0,NULL,0,1) )
-		{
-			$thumb_found = true;
-		}
-		else
-		{
-			$thumburl = base_url().'thumbs/'.substr($thumb,0,1).'/auto-'.$thumb.'.tbn';
-			if ( @file_get_contents($thumburl,0,NULL,0,1) )
-			{
-				$thumb_found = true;
-			}
-			else
-			{
-				$thumburl = base_url().'thumbs/Video/'.substr($thumb,0,1).'/auto-'.$thumb.'.tbn';
-				if ( @file_get_contents($thumburl,0,NULL,0,1) )
-				{
-					$thumb_found = true;
-				}	
-			}
-		}
-	}
+	
 	if ( $thumb_found )
 	{
 		switch($type)

@@ -1,9 +1,9 @@
 <VirtualHost 127.0.0.1:80>			<-- Set server IP accordingly
     ServerAdmin webmaster@localhost
     ServerName xbmcdm
-    DocumentRoot /var/www/xbmcdm		<-- Set this if you have symlinked like me, else point to www-root folder for app
+    DocumentRoot /var/www/xbmcdm/www-root	<-- Points to root dir of application
 
-    <Directory /var/www/xbmcdm/>		<-- Same www-root as above
+    <Directory /var/www/xbmcdm/www-root/>		<-- Same www-root as above
 	Options Indexes FollowSymLinks
 	AllowOverride All
 	allow from all

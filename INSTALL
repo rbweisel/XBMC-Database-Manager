@@ -2,7 +2,7 @@ Since the current codebase is primarily for testing purposes it isn't made to fi
 
 To get this up and running without config tweaking do as follows:
 
-1: Install packages: apache2, apache2-mod-php5, php5, php5-sqlite, php5-mysql, sqlite3
+1: Install packages: apache2, apache2-mod-php5, php5, php5-sqlite, php5-mysql, (sqlite3)
 
 2: Extract files in a folder of your choosing
 
@@ -19,11 +19,14 @@ To get this up and running without config tweaking do as follows:
 	    </Directory>
 	</VirtualHost>
 
-4: Edit the data/xbmcdm.db sqlite database, set the correct settings in dbconnection table
-	Will be fixed in the future so it can be set via settings page.
-	
-5: 'a2enmod php5' and 'a2enmod rewrite'
+4: 'a2enmod php5' and 'a2enmod rewrite'
 
-6: Restart apache
+5: Restart apache
 
-7: symlink/link/copy you Thumbnails folder to www-root/thumbs folder (contents of Thumbnails folder should be directly under www-root/thumbs/)
+6: symlink/link/copy you Thumbnails folder to www-root/thumbs folder (contents of Thumbnails folder should be directly under www-root/thumbs/)
+
+7: Make sure that the apache/web-server user (ubuntu: www-data) has read and write permissions to files/folders recursively in:
+	* XBMC-Database-Manager/data/
+	* XBMC-Database-Manager/www-root/thumbs
+
+8: Point you web browser to the application URL and you should get the install/setup screen

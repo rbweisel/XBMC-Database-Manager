@@ -2,7 +2,7 @@
 	Class ConfigDB
 	{
 		protected $connection = NULL;
-		
+
 		public function __construct()
 		{
 			if (file_exists('../data/xbmcdm.db'))
@@ -24,12 +24,12 @@
 				redirect(base_url().'install','refresh');
 			}
 		}
-		
+
 		public function query($sql)
 		{
 			return $this->connection->query($sql);
 		}
-		
+
 		public function xbmcdb()
 		{
 			$result = array();
@@ -64,12 +64,13 @@
 		public function hashit($filename)
 		{
 			$chars = strtolower($filename);
-		        $crc = 0xffffffff;
-		        for ($ptr = 0; $ptr < strlen($chars); $ptr++)
+			$crc = 0xffffffff;
+			for ($ptr = 0; $ptr < strlen($chars); $ptr++)
 			{
 				$chr = ord($chars[$ptr]);
-		                $crc ^= $chr << 24;
-		                for ($i=0; $i<8; $i++)
+				$crc ^= $chr << 24;
+
+				for ((int) $i=0; $i < 8; $i++)
 				{
 					if ($crc & 0x80000000)
 					{
@@ -80,17 +81,50 @@
 						$crc <<= 1;
 					}
 				}
-		        }
-		        if ($crc>=0)
+			}
+			// Système d'exploitation en 64 bits ?
+			if (strpos(php_uname('m'), '_64') !== false)
 			{
-				return sprintf("%08s",sprintf("%x",sprintf("%u",$crc)));
-		        }
+				//Formatting the output in a 8 character hex
+				if ($crc>=0)
+				{
+					$hash = sprintf("%16s",sprintf("%x",sprintf("%u",$crc)));
+				}
+				else
+				{
+					$source = sprintf('%b', $crc);
+					$hash = "";
+					while ($source <> "")
+					{
+						$digit = substr($source, -4);
+						$hash = dechex(bindec($digit)) . $hash;
+						$source = substr($source, 0, -4);
+					}
+				}
+				$hash = substr($hash, 8);
+			}
 			else
 			{
-				return sprintf("%08s",base_convert(sprintf("%u",$crc),10,16));
-		        }
+				//Formatting the output in a 8 character hex
+				if ($crc>=0)
+				{
+					$hash = sprintf("%08s",sprintf("%x",sprintf("%u",$crc)));
+				}
+				else
+				{
+					$source = sprintf('%b', $crc);
+					$hash = "";
+					while ($source <> "")
+					{
+						$digit = substr($source, -4);
+						$hash = dechex(bindec($digit)) . $hash;
+						$source = substr($source, 0, -4);
+					}
+				}
+			}
+			return $hash;
 		}
-		
+
 		public function __destruct()
 		{
 			$this->connection = NULL;
