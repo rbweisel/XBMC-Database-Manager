@@ -151,9 +151,8 @@
 			$data = array();
 			$data['base'] = $this->tmdb->getImageURL();
 			$data['urls'] = $this->tmdb->moviePoster($imdb_id);
-			$data['hash'] = $this->movie->getmoviehash($this->input->get('id'));		//
 			$data['id'] = $this->input->get('id');
-			//echo "Images:<br>";
+			$data['hash'] = $this->movie->getmoviehash($data['id']);		//
 			//echo "<pre>";print_r($pelinfo);echo"</pre>";
 			//echo "<img src=\"".$this->tmdb->getImageURL().$pelinfo['0']['file_path']."\">";
 			//$buscar = $this->tmdb->searchMovie('tt0080487','cl');

@@ -7,9 +7,7 @@ function switchposter(object)
 	$('#poster').attr('src', url);
 	return false;
 }
-
 $('.psave').live('click', function() {
-
 	var filename=$(this).val();
 	var id=$(this).attr('id');
 	var fileurl=$('#poster').attr('src');

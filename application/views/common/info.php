@@ -24,7 +24,9 @@ if(isset($thumb))
 			case 'movie':
 				if($edit==true)
 				{
-					echo "\t\t\t\t\t<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
+									echo "<div id='baseurl' class='hidden'>".base_url()."</div>\n";
+					//echo "\t\t\t\t\t<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
+					echo "\t\t\t\t\t<div id='poster'><a title='Poster' href=''><img onclick=\"TINY.box.show({iframe:'".base_url()."movies/getposters?imdb_id=".$imdb_id."&id=".$id."',fixed:true, height:600, width:400})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
 				}
 				else
 				{

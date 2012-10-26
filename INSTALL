@@ -2,7 +2,7 @@ Since the current codebase is primarily for testing purposes it isn't made to fi
 
 To get this up and running without config tweaking do as follows:
 
-1: Install packages: apache2, apache2-mod-php5, php5, php5-sqlite, php5-mysql, (sqlite3)
+1: Install packages: apache2, apache2-mod-php5, php5, php5-sqlite, php5-mysql, php5-curl, (sqlite3)
 
 2: Extract files in a folder of your choosing
 

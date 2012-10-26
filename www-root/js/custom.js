@@ -1,6 +1,7 @@
 /**********************************************************
  * Function to toggle divs in tv-show list hidden/showing *
  **********************************************************/
+
 function tvtoggle(div_id)
 {
 	switch(div_id)
@@ -23,7 +24,6 @@ function tvtoggle(div_id)
 			if ($('#showlist').is(":visible"))
 			{
 				$('#showlistheading').replaceWith('<a href="" onclick="return tvtoggle(\'showlist\');" id="showlistheading" class="header">- TV-Shows -</a>');
-				
 			}
 			else
 			{
@@ -292,6 +292,7 @@ function viewtv(object, view)
 				$('#eplist li').removeAttr('style');
 				break;
 			default:
+				view='';
 				$('#contentnav').load("shows/viewcontentnav?idshow="+idshow+"&idepisode="+idepisode+"&view="+view);
 				$('#contentinfo').load('shows/view?idshow='+idshow+"&idepisode="+idepisode+"&view="+view);
 				break;
@@ -302,8 +303,8 @@ function viewtv(object, view)
 		switch (what)
 		{
 			case 'tvshowlink':
-				$('#contentnav').load("shows/viewcontentnav?idshow="+idshow+"&idepisode="+idepisode);
-				$('#contentinfo').load('shows/view?idshow='+idshow+"&idepisode="+idepisode);
+				$('#contentnav').load("shows/viewcontentnav?idshow="+idshow+"&idepisode="+idepisode+"&view=info");
+				$('#contentinfo').load('shows/view?idshow='+idshow+"&idepisode="+idepisode+"&view=info");
 				$('#seasonlist').load('shows/getseasons?idshow='+idshow);
 				$('#eplist').load('shows/getepisodes?idshow='+idshow);
 				$('#showlist li').removeAttr('style');

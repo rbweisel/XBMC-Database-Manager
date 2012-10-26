@@ -10,47 +10,66 @@ body {
 }
 #current {
 	position: absolute;
-	top: 10px;
+	top: 0px;
 	left: 0px;
 	right: 0px;
-	bottom: 250px;
+	bottom: 0px;
 	text-align: center;
 }
 #current img {
+	width: 100%;
 	height: 100%;
-	border: 1px solid green;
 }
 #picker {
 	position: absolute;
 	left: 0px;
 	right: 0px;
-	height: 230px;
+	height: 104px;
 	bottom: 0px;
-	overflow-y: hidden;
-	overflow-x: show;
- }
- #posters {
-	position:absolute;
-	left:5px;
-	bottom: 5px;
-	top: 5px;
-	margin-right: -999em;
-	padding-left: 20px;
-	padding-right: 20px;
- }
+}
+#picker:hover #posters {
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+#posters {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	filter:alpha(opacity=0);
+	-moz-opacity: 0;
+	-khtml-opacity: 0;
+	opacity: 0;
+}
+#posters img {
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+#posters img:hover {
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
  
+.thumbnail {
+	height:100%;
+	float:left;
+	padding: 2px;
+}
+.thumbnail img {
+	max-height: 100px;
+}
+.thumbnail:hover {
+	cursor:hand;
+	padding: 0px;
+	border: 2px solid black;
+}
+
 #baseurl {
 	display: none
-}
-.thumbnail {
-	height: 100%;
-	float: left;
-}
-.thumbnail img{
-	margin-right: 10px;
-	max-height: 200px;
-	border: 1px solid white;
-}
-.thumbnail img:hover{
-	cursor:hand
 }

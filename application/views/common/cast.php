@@ -1,8 +1,3 @@
-<script type="text/javascript" src="<?php echo base_url();?>shadowbox/shadowbox.js"></script>
-<script type="text/javascript">
-	Shadowbox.init();
-</script>
-
 <table border="1">
 	<!--Loops throuch arrays containing info, printing to a table-->
 	<?php
@@ -12,7 +7,8 @@
 			echo '<div class="actor"><div class="actorpic">';
 			if ( @file_get_contents($thumburl,0,NULL,0,1) )
 			{
-				echo '<a rel="shadowbox" href="'.$thumburl.'"><img class="actorthumb" src="'.$thumburl.'" /></a>';
+				//echo '<a rel="shadowbox" href="'.$thumburl.'"><img class="actorthumb" src="'.$thumburl.'" /></a>';
+				echo '<a onclick="TINY.box.show({image:\''.$thumburl.'\',boxid:\'frameless\',animate:true})" href="'.$thumburl.'"><img class="actorthumb" src="'.$thumburl.'" /></a>';
 			}
 			else
 			{
@@ -24,5 +20,8 @@
 			echo '</div>';
 		}
 	?>
+	<script>
+		jQuery('a.cbox').colorbox();
+	</script>
 </table>
 

@@ -315,8 +315,8 @@ a {
 	position:absolute;
 }
 #list li:hover {
-	background-color: black;
-	color: white;
+	background-color: gray;
+	color: black;
 	text-decoration:none;
 }
 #list li {
@@ -391,7 +391,7 @@ a {
 #infotable th {
 	vertical-align: top;
 	text-align: left;
-	width: 130px;
+	width: 140px;
 }
 #contentinfo p {
 	font-size: 14px;
