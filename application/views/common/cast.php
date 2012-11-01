@@ -20,8 +20,5 @@
 			echo '</div>';
 		}
 	?>
-	<script>
-		jQuery('a.cbox').colorbox();
-	</script>
 </table>
 

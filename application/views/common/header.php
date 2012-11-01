@@ -7,7 +7,6 @@
 		<meta name="author" content="Vicious" />
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href='<?php echo base_url();?>css/style.css' type="text/css" media="screen, projection" />
-		<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>shadowbox/shadowbox.css" />-->
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>tinybox2/style.css" />
 		<title><?php if (isset($title)){echo $title . " - ";} ?>XBMC Database Manager</title>
 		<!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->

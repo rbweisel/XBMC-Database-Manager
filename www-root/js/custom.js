@@ -150,7 +150,7 @@ function togglehidden(div_id)
 // Function viewmovie, updates content navigation and content for movie info view --//
 function viewmovie(id, view)														//
 {																					//
-	edit='1';
+	edit='1';																		//
 	if (view)																		//
 	{																				//
 		$('#contentnav').load("movies/viewcontentnav?id=" + id + "&view=" + view);	//
@@ -162,9 +162,9 @@ function viewmovie(id, view)														//
 		$('#contentnav').load("movies/viewcontentnav?id=" + id);					//
 		$('#contentinfo').load("movies/viewmovie?id=" + id);						//
 	}																				//
-	$('#list li').removeAttr('style');
-	$('#' + id).css('background-color',"black");
-	$('#' + id).css('color',"white");
+	$('#list li').removeAttr('style');												//
+	$('#' + id).css('background-color',"black");									//
+	$('#' + id).css('color',"white");												//
 	return false;																	//
 }																					//
 // End function viewmovie(id, view) ------------------------------------------------//

@@ -1,36 +1,39 @@
 /*************************************************
- * Function to replace a file with file from url *
+ * Function to replace poster with file from url *
  *************************************************/
 function switchposter(object)
 {
 	var url=object.src;
+	var poster=$('#poster');
 	$('#poster').attr('src', url);
+	$('#menu').css({'display': 'block'});
 	return false;
 }
-$('.psave').live('click', function() {
+
+$('.revert').live('click', function() {
+	var url=$(this).val();
+	$('#poster').attr('src', url);
+	$('#menu').css({'display': 'none'});
+});
+
+$('.save').live('click', function() {
+	$('#posterpicker').css({'display': 'none'});
+	$('#saving').css({'display': 'block'});
+	
 	var filename=$(this).val();
 	var id=$(this).attr('id');
 	var fileurl=$('#poster').attr('src');
 	var baseurl=$('#baseurl').html();
 
-	if(fileurl==filename)
+	// Save the new poster to correct file
+	$('#baseurl').load(baseurl + "movies/saveposter?purl="+fileurl+"&pfile="+filename, function()
 	{
-		alert("Nothing to save!");
-		parent.Shadowbox.close();
-		return false;
-	}
-	else
-	{
-		$('#baseurl').load(baseurl + "movies/saveposter?purl="+fileurl+"&pfile="+filename, function()
+		// Reloads content info when poster have changed
+		$('#contentinfo', window.parent.document).load(baseurl+"movies/viewmovie?id="+id, function()
 		{
-			// Reloads content info when poster have changed
-			$('#contentinfo', window.parent.document).load(baseurl+"movies/viewmovie?id="+id, function()
-			{
-				// Close ifram when done
-				parent.Shadowbox.close();
-			});
+			// Close iframe after page reload is done
+			parent.TINY.box.hide();
 		});
-		return false;
-	}
+	});
 	return false;
 });

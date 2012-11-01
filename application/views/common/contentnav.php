@@ -9,8 +9,8 @@
 					}
 					else
 					{
-						$('#nobglink').replaceWith('<a title="Backdrop" id="bglink" onclick="Shadowbox.open({content: \'' + uri + '\', player: \'img\', title: \'Backdrop\'});"></a>');
-						$('#bglink').replaceWith('<a title="Backdrop" id="bglink" onclick="Shadowbox.open({content: \'' + uri + '\', player: \'img\', title: \'Backdrop\'});"></a>');
+						$('#nobglink').replaceWith('<a title="Backdrop" id="bglink" onclick="TINY.box.show({image: \'' + uri + '\', \'boxid\': \'frameless\', animate: true, top: 50, left: 50});"></a>');
+						$('#bglink').replaceWith('<a title="Backdrop" id="bglink" onclick="TINY.box.show({image: \'' + uri + '\', \'boxid\': \'frameless\', animate: true, top: 50, left: 50});"></a>');
 						$('#background').css("background-image", "url(" + uri + ")");
 						$('#background').css("background-color", "black");
 					}

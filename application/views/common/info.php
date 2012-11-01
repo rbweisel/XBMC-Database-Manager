@@ -1,7 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url();?>shadowbox/shadowbox.js"></script>
-<script type="text/javascript">
-	Shadowbox.init();
-</script><?php
+<?php
 //Random number to bypass browser image caching
 $rand = rand(1000, 9999);
 
@@ -19,22 +16,21 @@ if(isset($thumb))
 		switch($type)
 		{
 			case 'episode':
-				echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img src="'.$thumburl.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
+				echo "\t\t\t\t\t".'<div id="poster"><a title="Poster" href="'.$thumburl.'" onclick="TINY.box.show({image: \''.$thumburl.'?'.$rand.'\', \'boxid\': \'frameless\', animate:true})"><img src="'.$thumburl.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
 				break;
 			case 'movie':
 				if($edit==true)
 				{
-									echo "<div id='baseurl' class='hidden'>".base_url()."</div>\n";
-					//echo "\t\t\t\t\t<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
-					echo "\t\t\t\t\t<div id='poster'><a title='Poster' href=''><img onclick=\"TINY.box.show({iframe:'".base_url()."movies/getposters?imdb_id=".$imdb_id."&id=".$id."',fixed:true, height:600, width:400})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
+					echo "<div id='baseurl' style='display: none'>".base_url()."</div>\n\t\t\t\t\t";
+					echo "<div id='poster'><a title='Poster' href=''><img onclick=\"TINY.box.show({iframe:'".base_url()."movies/getposters?imdb_id=".$imdb_id."&id=".$id."',fixed:true, height:600, width:400})\" src='".$thumburl."?".$rand."' /></a></div><div id=\"movieinfo\">\n";
 				}
 				else
 				{
-					echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'?'.$rand.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
+					echo "\t\t\t\t\t".'<div id="poster"><a title="Poster" href="'.$thumburl.'" onclick="TINY.box.show({image: \''.$thumburl.'?'.$rand.'\', \'boxid\': \'frameless\', animate:true})"><img id="'.$imdb_id.'" src="'.$thumburl.'?'.$rand.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
 				}
 				break;
 			case 'show':
-				echo "\t\t\t\t\t".'<div id="banner">'."\n\t".'<a rel="shadowbox" title="Banner" href="'.$thumburl.'">'."\n\t\t".'<img src="'.$thumburl.'" />'."\n\t".'</a>'."\n".'</div>'."\n\t\t\t\t\t".'<div id="showinfo">'."\n";
+				echo "\t\t\t\t\t".'<div id="banner">'."\n\t".'<a title="Banner" href="'.$thumburl.'" onclick="TINY.box.show({image: \''.$thumburl.'?'.$rand.'\', \'boxid\': \'frameless\', animate:true})">'."\n\t\t".'<img src="'.$thumburl.'" />'."\n\t".'</a>'."\n".'</div>'."\n\t\t\t\t\t".'<div id="showinfo">'."\n";
 				break;
 		}
 	}
@@ -48,16 +44,16 @@ if(isset($thumb))
 			case 'movie':
 				if($edit==true)
 				{
-					echo "\t\t\t\t\t<div id='poster'><a title='Poster' href=''><img onclick=\"Shadowbox.open({content: '".base_url()."/movies/getposters?imdb_id=".$imdb_id."&id=".$id."', player: 'iframe', title: 'Posters'})\" src='/img/na.jpg' /></a></div><div id=\"movieinfo\">\n";
+					echo "<div id='baseurl' style='display: none'>".base_url()."</div>\n\t\t\t\t\t";
+					echo "<div id='poster'><a title='Poster' href=''><img onclick=\"TINY.box.show({iframe:'".base_url()."movies/getposters?imdb_id=".$imdb_id."&id=".$id."',fixed:true, height:600, width:400})\" src='".base_url()."img/na.jpg' /></a></div><div id=\"movieinfo\">\n";
 				}
 				else
 				{
-					echo "\t\t\t\t\t".'<div id="poster"><a rel="shadowbox" title="Poster" href="'.$thumburl.'"><img id="'.$imdb_id.'" src="'.$thumburl.'?'.$rand.'" /></a></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
+					echo "\t\t\t\t\t".'<div id="poster"><img src="/img/na.jpg" /></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
 				}
 				break;
 			case 'show':
-				echo "\t\t\t\t\t".'<div id="poster"><img src="/img/na.jpg" /></div>'."\n\t\t\t\t\t".'<div id="movieinfo">'."\n";
-//				echo "\t\t\t\t\t".'<div id="banner"><img src="/img/na.jpg" /></div>'."\n\t\t\t\t\t".'<div id="showinfo">'."\n";
+				echo "\t\t\t\t\t".'<div id="banner"><img src="/img/na.jpg" /></div>'."\n\t\t\t\t\t".'<div id="showinfo">'."\n";
 				break;
 		}
 	}
