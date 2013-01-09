@@ -6,7 +6,6 @@ $buffer .= "\r\n<span></span>\r\n";
 	echo "<link rel='stylesheet' href='install.css' type='text/css' media='screen, projection'/>\n";
 	echo "\t</head>\n\t<body>\n";
 	echo "\t\t<div id='validation'>\n";
-	print_r($_POST);
 	ob_flush();
 	flush();
 
