@@ -6,6 +6,7 @@ $buffer .= "\r\n<span></span>\r\n";
 	echo "<link rel='stylesheet' href='install.css' type='text/css' media='screen, projection'/>\n";
 	echo "\t</head>\n\t<body>\n";
 	echo "\t\t<div id='validation'>\n";
+	print_r($_POST);
 	ob_flush();
 	flush();
 
@@ -105,7 +106,7 @@ $buffer .= "\r\n<span></span>\r\n";
 		$cdb = new PDO('sqlite:../../data/xbmcdm.db');
 		$cdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$cdb->exec("CREATE TABLE users (id INTEGER PRIMARY KEY, username VARCHAR, password VARCHAR)");
-		$cdb->exec("INSERT INTO users (username, password) VALUES ('".$_POST['dbpass']."', '".MD5($_POST['pass1'])."')");
+		$cdb->exec("INSERT INTO users (username, password) VALUES ('".$_POST['user']."', '".MD5($_POST['pass1'])."')");
 		$cdb->exec("CREATE TABLE dbconnection (hostname TEXT, username TEXT, password TEXT, database TEXT, dbdriver TEXT, dbprefix TEXT)");
 		$cdb->exec("INSERT INTO dbconnection (hostname, username, password, database, dbdriver, dbprefix) VALUES ('$dbhost','$dbuser','$dbpass','$dbname','$driver','$prefix')");
 	}
